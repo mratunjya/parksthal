@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      // "@/*": ["./src/*"],
+      "@colors": ["./src/constants/colors.js"],
+      "@common/*": ["./src/components/common/*"],
+      "@components/*": ["./src/components/*"],
+      "@GlobalStyles": ["./src/styles/global.js"],
+      "@layout": ["./src/layout.js"],
+      "@styles/*": ["./src/styles/*"]
     }
   }
 }
