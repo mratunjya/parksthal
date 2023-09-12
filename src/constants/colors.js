@@ -1,8 +1,8 @@
 import chroma from "chroma-js";
 
-const PRIMARY_COLOR = '#e94f37';
-const SECONDARY_COLOR = '#393e41';
-const TERTIARY_COLOR = '#f6f7eb';
+const PRIMARY_COLOR = "#e94f37";
+const SECONDARY_COLOR = "#393e41";
+const TERTIARY_COLOR = "#f6f7eb";
 
 // Primary color
 export const PRIMARY_100 = chroma(PRIMARY_COLOR).brighten(2).hex();
@@ -37,7 +37,6 @@ export const TERTIARY_700 = chroma(TERTIARY_COLOR).darken(0.4).hex();
 export const TERTIARY_800 = chroma(TERTIARY_COLOR).darken(0.6).hex();
 export const TERTIARY_900 = chroma(TERTIARY_COLOR).darken(0.8).hex();
 
-
 // Other colors
-export const WHITE = '#ffffff';
-export const BLACK = '#000000';
+export const WHITE = "#ffffff";
+export const BLACK = "#000000";

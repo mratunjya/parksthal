@@ -36,6 +36,9 @@ import {
 import FlexBox from "@common/FlexBox";
 import { SmallButton, MediumButton, LargeButton } from "@common/Button";
 
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect } from "react";
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -51,10 +54,27 @@ const Wrapper = styled.div`
 `;
 
 export default function Home() {
+  const session = useSession();
+
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
+
+  const handleSignIn = () => {
+    signIn();
+  };
+
+  const handleSignOut = () => {
+    signOut();
+  };
+
   return (
     <Layout title="ParkSthal: Home">
-      <SmallButton>Button</SmallButton>
-      <MediumButton>Button</MediumButton>
+      {session.data ? (
+        <MediumButton onClick={handleSignOut}>Sign Out</MediumButton>
+      ) : (
+        <SmallButton onClick={handleSignIn}>Sign In</SmallButton>
+      )}
       <LargeButton>Button</LargeButton>
       <Wrapper>
         <FlexBox color={PRIMARY_100} width="100%" ratio="1" />
