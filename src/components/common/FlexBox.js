@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const FlexBox = styled.div`
   /* Flex properties */
-  display: flex;
+  display: ${(props) => props.display};
   flex-direction: ${(props) => props.direction};
   flex-wrap: ${(props) => props.wrap};
   justify-content: ${(props) => props.justify};
@@ -72,6 +72,7 @@ const FlexBox = styled.div`
   // Mobile
   @media (max-width: 768px) {
     /* Mobile-specific styles */
+    display: ${(props) => props.displayMobile};
     flex-direction: ${(props) => props.directionMobile};
     flex-wrap: ${(props) => props.wrapMobile};
     justify-content: ${(props) => props.justifyMobile};
@@ -114,5 +115,9 @@ const FlexBox = styled.div`
     ${(props) => props.cssMobile};
   }
 `;
+
+FlexBox.defaultProps = {
+  display: "flex",
+};
 
 export default FlexBox;

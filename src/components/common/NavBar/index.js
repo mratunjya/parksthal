@@ -1,6 +1,5 @@
 import chroma from "chroma-js";
 import { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
@@ -9,95 +8,16 @@ import CommonLink from "@common/CommonLink";
 import CommonImage from "@common/CommonImage";
 import { navLinksData } from "@meta/NavBar/navLinksData";
 
-import { SECONDARY_100, SECONDARY_200, SECONDARY_300, WHITE } from "@colors";
+import { BLACK, SECONDARY_200, SECONDARY_300, WHITE } from "@colors";
 
-const NavBarWrapper = styled(FlexBox).attrs({ as: "nav" })`
-  backdrop-filter: saturate(180%) blur(20px);
-  box-shadow: 0px 0px 8px ${SECONDARY_100};
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 0;
-  }
-`;
-
-const NavBar = styled(FlexBox)`
-  width: 86.67%;
-  max-width: 75rem;
-`;
-
-const AllNavLinks = styled(FlexBox)`
-  width: fit-content;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const OnlyMobileNavBarEnteringAnimation = keyframes`
-  0% {
-    transform: translateX(100%);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-`;
-
-const OnlyMobileNavBarExitingAnimation = keyframes`
-  0% {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0.5;
-  }
-`;
-
-const OnlyMobileNavBar = styled(FlexBox).attrs({ as: "nav" })`
-  display: none;
-
-  @media (max-width: 768px) {
-    display: flex;
-    animation: ${(props) =>
-        props.isnavbaropen
-          ? OnlyMobileNavBarEnteringAnimation
-          : OnlyMobileNavBarExitingAnimation}
-      0.3s ease-in-out;
-    left: ${(props) => (props.isnavbaropen ? "30%" : "100%")};
-  }
-`;
-
-const AllNavLinksMobile = styled(FlexBox)`
-  display: none;
-
-  @media (max-width: 768px) {
-    display: flex;
-  }
-`;
-
-const HamBurgerButton = styled(FlexBox)`
-  display: none;
-
-  @media (max-width: 768px) {
-    display: flex;
-  }
-`;
-
-const FallBackNavBar = styled(FlexBox)`
-  display: none;
-
-  @media (max-width: 768px) {
-    background-color: rgba(0, 0, 0, 0.4);
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
+import {
+  NavBarWrapper,
+  NavBar,
+  AllNavLinks,
+  OnlyMobileNavBar,
+  HamBurgerButton,
+  FallBackNavBar,
+} from "./indexStyle";
 
 const CommonNavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -156,6 +76,8 @@ const CommonNavBar = () => {
             </FlexBox>
           </AllNavLinks>
           <HamBurgerButton
+            display="none"
+            displayMobile="flex"
             width="fit-content"
             padding="0.5rem 0 0.5rem 0.5rem"
             onClick={isNavOpen ? closeNavBar : openNavBar}
@@ -171,33 +93,35 @@ const CommonNavBar = () => {
       {isNavOpen && (
         <FallBackNavBar
           onClick={closeNavBar}
-          width="100%"
-          position="fixed"
-          backgroundcolor={WHITE}
           direction="column"
           padding="2rem 1rem"
-          zindex="100"
+          justify="center"
+          align="center"
+          position="fixed"
+          width="30%"
+          height="100%"
+          zIndex="2"
+          opacity="0.4"
+          bgColor={BLACK}
+          display="none"
+          displayMobile="flex"
         />
       )}
       <OnlyMobileNavBar
         width="70%"
         position="fixed"
-        backgroundcolor={WHITE}
         direction="column"
-        padding="2rem 0rem"
-        isnavbaropen={isNavOpen}
-        zindex="100"
+        padding="2rem 1.5rem"
+        isNavBarOpen={isNavOpen}
+        zIndex="100"
+        bgColor={chroma(WHITE).alpha(0.8).css()}
+        height="100%"
+        display="none"
+        displayMobile="flex"
+        gap="1.5rem"
+        align="flex-start"
       >
-        <AllNavLinksMobile align="center" gap="1.5rem" direction="column">
-          <FlexBox
-            align="flex-start"
-            justify="center"
-            gap="0.75rem"
-            direction="column"
-          >
-            <RenderAllNavLinks />
-          </FlexBox>
-        </AllNavLinksMobile>
+        <RenderAllNavLinks />
       </OnlyMobileNavBar>
     </>
   );
