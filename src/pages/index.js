@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <Layout title="ParkSthal: Home">
+    <Layout title="ParkSthal: Log In">
       {session.data ? (
         <MediumButton onClick={handleSignOut}>Sign Out</MediumButton>
       ) : (
@@ -68,33 +68,33 @@ export default function Home() {
       )}
       <LargeButton>Button</LargeButton>
       <Wrapper>
-        <FlexBox color={PRIMARY_100} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_100} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_100} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_200} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_200} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_200} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_300} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_300} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_300} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_400} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_400} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_400} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_500} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_500} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_500} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_600} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_600} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_600} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_700} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_700} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_700} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_800} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_800} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_800} width="100%" ratio="1" />
-        <FlexBox color={PRIMARY_900} width="100%" ratio="1" />
-        <FlexBox color={SECONDARY_900} width="100%" ratio="1" />
-        <FlexBox color={TERTIARY_900} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_100} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_100} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_100} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_200} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_200} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_200} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_300} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_300} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_300} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_400} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_400} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_400} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_500} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_500} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_500} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_600} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_600} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_600} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_700} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_700} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_700} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_800} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_800} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_800} width="100%" ratio="1" />
+        <FlexBox bgColor={PRIMARY_900} width="100%" ratio="1" />
+        <FlexBox bgColor={SECONDARY_900} width="100%" ratio="1" />
+        <FlexBox bgColor={TERTIARY_900} width="100%" ratio="1" />
       </Wrapper>
     </Layout>
   );

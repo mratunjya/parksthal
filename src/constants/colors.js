@@ -16,15 +16,15 @@ export const PRIMARY_800 = chroma(PRIMARY_COLOR).darken(0.6).hex();
 export const PRIMARY_900 = chroma(PRIMARY_COLOR).darken(0.8).hex();
 
 // Secondary color
-export const SECONDARY_100 = chroma(SECONDARY_COLOR).brighten(0.8).hex();
-export const SECONDARY_200 = chroma(SECONDARY_COLOR).brighten(0.6).hex();
-export const SECONDARY_300 = chroma(SECONDARY_COLOR).brighten(0.4).hex();
-export const SECONDARY_400 = chroma(SECONDARY_COLOR).brighten(0.2).hex();
+export const SECONDARY_100 = chroma(SECONDARY_COLOR).brighten(3.2).hex();
+export const SECONDARY_200 = chroma(SECONDARY_COLOR).brighten(2.4).hex();
+export const SECONDARY_300 = chroma(SECONDARY_COLOR).brighten(1.6).hex();
+export const SECONDARY_400 = chroma(SECONDARY_COLOR).brighten(0.8).hex();
 export const SECONDARY_500 = SECONDARY_COLOR; // Original color
-export const SECONDARY_600 = chroma(SECONDARY_COLOR).darken(0.2).hex();
-export const SECONDARY_700 = chroma(SECONDARY_COLOR).darken(0.4).hex();
-export const SECONDARY_800 = chroma(SECONDARY_COLOR).darken(0.6).hex();
-export const SECONDARY_900 = chroma(SECONDARY_COLOR).darken(0.8).hex();
+export const SECONDARY_600 = chroma(SECONDARY_COLOR).darken(0.1).hex();
+export const SECONDARY_700 = chroma(SECONDARY_COLOR).darken(0.2).hex();
+export const SECONDARY_800 = chroma(SECONDARY_COLOR).darken(0.3).hex();
+export const SECONDARY_900 = chroma(SECONDARY_COLOR).darken(0.4).hex();
 
 // Tertiary color
 export const TERTIARY_100 = chroma(TERTIARY_COLOR).brighten(0.4).hex();

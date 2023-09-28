@@ -12,15 +12,14 @@ export default function App({
   return (
     <>
       <GlobalStyles />
+      <NextNProgress
+        color={PRIMARY_500}
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+        showOnShallow={true}
+      />
       <SessionProvider session={session}>
-        <NextNProgress
-          color={PRIMARY_500}
-          startPosition={0.3}
-          stopDelayMs={200}
-          height={3}
-          showOnShallow={true}
-          nonce="my-nonce"
-        />
         <Component {...pageProps} />
       </SessionProvider>
     </>
