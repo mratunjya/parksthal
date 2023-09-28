@@ -66,6 +66,9 @@ const FlexBox = styled.div`
   font-family: ${(props) => props.fontFamily};
   color: ${(props) => props.textColor};
   line-height: ${(props) => props.lineHeight};
+  font-weight: ${(props) => props.weight};
+  text-align: ${(props) => props.textAlign};
+  white-space: ${(props) => props.whiteSpace};
 
   ${(props) => props.css};
 
@@ -104,7 +107,8 @@ const FlexBox = styled.div`
     cursor: ${(props) => props.cursorMobile};
     user-select: ${(props) => props.selectMobile};
     pointer-events: ${(props) => props.eventsMobile};
-    text-transform: ${(props) => props.toUpperMobile && "uppercase"};
+    text-transform: ${(props) =>
+      props.toUpperMobile ? "uppercase" : props.textTransform};
     font-size: ${(props) => props.fontSizeMobile};
     font-family: ${(props) => props.fontFamilyMobile};
     color: ${(props) => props.textColorMobile};
@@ -112,6 +116,8 @@ const FlexBox = styled.div`
     gap: ${(props) => props.gapMobile};
     row-gap: ${(props) => props.rowGapMobile};
     column-gap: ${(props) => props.colGapMobile};
+    font-weight: ${(props) => props.mobileWeight};
+
     ${(props) => props.cssMobile};
   }
 `;

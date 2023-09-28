@@ -8,7 +8,8 @@
       "@GlobalStyles": ["./src/styles/global.js"],
       "@layout": ["./src/layout.js"],
       "@meta/*": ["./src/meta/*"],
-      "@styles/*": ["./src/styles/*"]
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   }
 }

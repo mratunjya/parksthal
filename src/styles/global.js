@@ -18,6 +18,10 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${SECONDARY_800};
     color: ${WHITE};
   }
+
+  button {
+    font-family: inherit;
+  }
 `;
 
 export default GlobalStyles;

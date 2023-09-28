@@ -4,10 +4,12 @@ import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
 import FlexBox from "@common/FlexBox";
+import { LogOut } from "@utils/LogOut";
 import CommonLink from "@common/CommonLink";
+import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
 import { navLinksData } from "@meta/NavBar/navLinksData";
-
+import { IsAuthenticated } from "@utils/IsAuthenticated";
 import { BLACK, SECONDARY_200, SECONDARY_300, WHITE } from "@colors";
 
 import {
@@ -74,6 +76,9 @@ const CommonNavBar = () => {
             <FlexBox align="center" justify="center" gap="0.75rem">
               <RenderAllNavLinks />
             </FlexBox>
+            {IsAuthenticated() && (
+              <SmallButton onClick={LogOut}>Log Out</SmallButton>
+            )}
           </AllNavLinks>
           <HamBurgerButton
             display="none"
