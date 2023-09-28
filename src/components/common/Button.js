@@ -1,6 +1,6 @@
+import FlexBox from "@common/FlexBox";
 import styled from "styled-components";
 import { PRIMARY_500, WHITE } from "@colors";
-import FlexBox from "@common/FlexBox";
 
 const Button = styled(FlexBox).attrs({ as: "button" })`
   &:after,
@@ -12,7 +12,7 @@ const Button = styled(FlexBox).attrs({ as: "button" })`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 6.25rem;
+    overflow: hidden;
     opacity: 0.1;
     background: ${WHITE};
   }
@@ -60,6 +60,10 @@ export const MediumButton = styled(Button)`
 export const LargeButton = styled(Button)`
   font-size: 1.5rem;
   padding: 1.5rem 3rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export default Button;

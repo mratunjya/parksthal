@@ -16,14 +16,18 @@ const LogIn = () => {
         margin="0 auto"
         align="center"
         justify="space-between"
-        gap="3.75rem"
+        gap="1.5rem"
         height="calc(100vh - 3.4375rem)"
+        wrapMobile="wrap"
+        justifyMobile="flex-start"
+        heightMobile="unset"
+        paddingMobile="24px 0"
       >
         <H1>
           Welcome to ParkSthal!
           <br />
           <br />
-          Please log in to ParkSthal using <br />
+          Please log in to ParkSthal using <br className="no-mobile" />
           Google or Facebook
         </H1>
         <AuthLogInBtns />

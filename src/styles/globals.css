@@ -43,6 +43,7 @@ ul {
 
 button {
   cursor: pointer;
+  font-family: inherit;
 }
 
 h1 {
@@ -73,4 +74,28 @@ h6 {
 
 p {
   font-size: 1rem;
+}
+
+@media (min-width: 769px) {
+  .only-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  p {
+    font-size: 0.75rem;
+  }
+
+  .no-mobile {
+    display: none;
+  }
 }
