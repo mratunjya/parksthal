@@ -1,5 +1,9 @@
-import Layout from "@layout";
 import styled from "styled-components";
+import { useSession, signIn, signOut } from "next-auth/react";
+
+import Layout from "@layout";
+import FlexBox from "@common/FlexBox";
+import { SmallButton, MediumButton, LargeButton } from "@common/Button";
 import {
   PRIMARY_100,
   PRIMARY_200,
@@ -10,8 +14,6 @@ import {
   PRIMARY_700,
   PRIMARY_800,
   PRIMARY_900,
-} from "@colors";
-import {
   SECONDARY_100,
   SECONDARY_200,
   SECONDARY_300,
@@ -21,8 +23,6 @@ import {
   SECONDARY_700,
   SECONDARY_800,
   SECONDARY_900,
-} from "@colors";
-import {
   TERTIARY_100,
   TERTIARY_200,
   TERTIARY_300,
@@ -33,11 +33,6 @@ import {
   TERTIARY_800,
   TERTIARY_900,
 } from "@colors";
-import FlexBox from "@common/FlexBox";
-import { SmallButton, MediumButton, LargeButton } from "@common/Button";
-
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useEffect } from "react";
 
 const Wrapper = styled.div`
   display: grid;
@@ -55,10 +50,6 @@ const Wrapper = styled.div`
 
 export default function Home() {
   const session = useSession();
-
-  useEffect(() => {
-    console.log(session);
-  }, [session]);
 
   const handleSignIn = () => {
     signIn();
