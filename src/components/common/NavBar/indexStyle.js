@@ -1,4 +1,4 @@
-import FlexBox from "@common/FlexBox";
+import { FlexBox } from "@common/FlexBox";
 import styled, { keyframes } from "styled-components";
 
 import { SECONDARY_100 } from "@colors";

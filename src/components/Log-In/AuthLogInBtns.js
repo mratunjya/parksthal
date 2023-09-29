@@ -4,9 +4,9 @@ import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 
 import { H3 } from "@common/Text";
-import FlexBox from "@common/FlexBox";
-import Button, { LargeButton } from "@common/Button";
-import { BLACK, SECONDARY_100, SECONDARY_500, WHITE } from "@colors";
+import { FlexBox } from "@common/FlexBox";
+import { LargeButton } from "@common/Button";
+import { SECONDARY_100, SECONDARY_500, WHITE } from "@colors";
 
 const AuthLogInBtns = () => {
   const googleLogInHandler = () => {

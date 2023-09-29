@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
-import FlexBox from "@common/FlexBox";
+import { FlexBox } from "@common/FlexBox";
 import { LogOut } from "@utils/LogOut";
 import CommonLink from "@common/CommonLink";
 import { SmallButton } from "@common/Button";

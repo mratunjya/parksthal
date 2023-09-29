@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FlexBox = styled.div`
+export const FlexBox = styled.div`
   /* Flex properties */
   display: ${(props) => props.display};
   flex-direction: ${(props) => props.direction};
@@ -125,5 +125,3 @@ const FlexBox = styled.div`
 FlexBox.defaultProps = {
   display: "flex",
 };
-
-export default FlexBox;

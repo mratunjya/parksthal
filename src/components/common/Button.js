@@ -1,4 +1,4 @@
-import FlexBox from "@common/FlexBox";
+import { FlexBox } from "@common/FlexBox";
 import styled from "styled-components";
 import { PRIMARY_500, WHITE } from "@colors";
 

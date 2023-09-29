@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Layout from "@layout";
 import { H1 } from "@common/Text";
-import FlexBox from "@common/FlexBox";
+import { FlexBox } from "@common/FlexBox";
 import AuthLogInBtns from "@components/Log-In/AuthLogInBtns";
 
 const Wrapper = styled(FlexBox)``;
