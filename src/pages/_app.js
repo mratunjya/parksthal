@@ -4,12 +4,20 @@ import NextNProgress from "nextjs-progressbar";
 import { SessionProvider } from "next-auth/react";
 
 import { PRIMARY_500 } from "@colors";
+import PageLoader from "@common/PageLoader";
+import { useEffect, useState } from "react";
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  return (
+  const [isLoaded, setIsLoaded] = useState(true);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  return isLoaded ? (
     <>
       <GlobalStyles />
       <NextNProgress
@@ -23,5 +31,7 @@ export default function App({
         <Component {...pageProps} />
       </SessionProvider>
     </>
+  ) : (
+    <PageLoader />
   );
 }
