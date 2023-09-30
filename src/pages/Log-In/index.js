@@ -27,7 +27,7 @@ const LogIn = () => {
           Welcome to ParkSthal!
           <br />
           <br />
-          Please log in to ParkSthal using <br className="no-mobile" />
+          Kindly log using <br className="no-mobile" />
           Google or Facebook
         </H1>
         <AuthLogInBtns />

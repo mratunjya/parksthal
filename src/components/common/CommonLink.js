@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const CommonLinkComponent = styled(Link)`
-  &:hover {
+  :hover {
     transform: scale(1.05);
   }
 `;
