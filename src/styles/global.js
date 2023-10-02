@@ -15,8 +15,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   *::selection {
-    background-color: ${SECONDARY_800};
     color: ${WHITE};
+    background-color: ${SECONDARY_800};
   }
 `;
 
