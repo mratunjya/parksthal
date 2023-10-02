@@ -1,105 +1,64 @@
 import styled, { keyframes } from "styled-components";
 
 import { FlexBox } from "./FlexBox";
-import { PRIMARY_300, PRIMARY_400, PRIMARY_500 } from "@colors";
+import { PRIMARY_500 } from "@colors";
 
 const DotPulseAnimation = keyframes`
   0% {
-    box-shadow: 9999px 0 0 -5px;
-    background-color: ${PRIMARY_300};
-    color: ${PRIMARY_300};
+    top: -5px;
+    transform: scale(1);
   }
-  30% {
-    box-shadow: 9999px 0 0 2px;
-    background-color: ${PRIMARY_400};
-    color: ${PRIMARY_400};
-  }
-  60%,
   100% {
-    box-shadow: 9999px 0 0 -5px;
-    background-color: ${PRIMARY_500};
-    color: ${PRIMARY_500};
+    top: 5px;
+    transform: scale(1);
   }
 `;
 
-const DotPulseBeforeAnimation = keyframes`
-  0% {
-    box-shadow: 9984px 0 0 -5px;
-    background-color: ${PRIMARY_300};
-    color: ${PRIMARY_300};
-    }
-  30% {
-    box-shadow: 9984px 0 0 2px;
-    background-color: ${PRIMARY_400};
-    color: ${PRIMARY_400};
-  }
-  60%,
-  100% {
-    box-shadow: 9984px 0 0 -5px;
-    background-color: ${PRIMARY_500};
-    color: ${PRIMARY_500};
-  }
-`;
-
-const DotPulseAfterAnimation = keyframes`
-  0% {
-    box-shadow: 10014px 0 0 -5px;
-    background-color: ${PRIMARY_300};
-    color: ${PRIMARY_300};
-  }
-  30% {
-    box-shadow: 10014px 0 0 2px;
-    background-color: ${PRIMARY_400};
-    color: ${PRIMARY_400};
-  }
-  60%,
-  100% {
-    box-shadow: 10014px 0 0 -5px;
-    background-color: ${PRIMARY_500};
-    color: ${PRIMARY_500};
-  }
+const DotPulseWrapper = styled(FlexBox)`
+  width: 12px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
 `;
 
 const DotPulse = styled(FlexBox)`
-  position: relative;
-  left: -9999px;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
+  width: 12px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: absolute;
+  transform: scale(0);
   background-color: ${PRIMARY_500};
-  color: ${PRIMARY_500};
-  box-shadow: 9999px 0 0 -5px;
-  animation: ${DotPulseAnimation} 1.5s infinite linear;
-  animation-delay: 0.25s;
+  animation: ${DotPulseAnimation} 0.75s infinite alternate;
+`;
 
-  ::before,
-  ::after {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: ${PRIMARY_500};
-    color: ${PRIMARY_500};
-  }
+const DotPulseLeft = styled(DotPulse)`
+  animation-delay: 0s;
+`;
 
-  ::before {
-    box-shadow: 9984px 0 0 -5px;
-    animation: ${DotPulseBeforeAnimation} 1.5s infinite linear;
-    animation-delay: 0s;
-  }
+const DotPulseMiddle = styled(DotPulse)`
+  animation-delay: 0.375s;
+`;
 
-  ::after {
-    box-shadow: 10014px 0 0 -5px;
-    animation: ${DotPulseAfterAnimation} 1.5s infinite linear;
-    animation-delay: 0.5s;
-  }
+const DotPulseRight = styled(DotPulse)`
+  animation-delay: 0.75s;
 `;
 
 export const Loader = () => (
-  <FlexBox align="center" justify="center" width="100%" height="100%">
-    <DotPulse />
+  <FlexBox
+    align="center"
+    justify="center"
+    width="100%"
+    height="100%"
+    gap="10px"
+  >
+    <DotPulseWrapper>
+      <DotPulseLeft />
+    </DotPulseWrapper>
+    <DotPulseWrapper>
+      <DotPulseMiddle />
+    </DotPulseWrapper>
+    <DotPulseWrapper>
+      <DotPulseRight />
+    </DotPulseWrapper>
   </FlexBox>
 );

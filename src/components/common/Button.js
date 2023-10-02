@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { PRIMARY_500, WHITE } from "@colors";
 
 const Button = styled(FlexBox).attrs({ as: "button" })`
-  :after,
-  :before {
+  &::after,
+  &::before {
     content: "";
     position: absolute;
     width: 0;
@@ -17,16 +17,16 @@ const Button = styled(FlexBox).attrs({ as: "button" })`
     background: ${WHITE};
   }
 
-  :focus,
-  :hover {
-    :after {
+  &:focus,
+  &:hover {
+    &::after {
       width: 100%;
       height: 100%;
     }
   }
 
-  :active {
-    :before {
+  &:active {
+    &::before {
       width: 100%;
       height: 100%;
     }
