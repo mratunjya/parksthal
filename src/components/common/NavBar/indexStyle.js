@@ -9,6 +9,10 @@ export const NavBarWrapper = styled(FlexBox).attrs({ as: "nav" })`
   backdrop-filter: saturate(180%) blur(1.25rem);
   box-shadow: 0rem 0rem 0.5rem ${SECONDARY_100};
 
+  & * {
+    user-select: none;
+  }
+
   @media (max-width: 768px) {
     padding: 0.5rem 0;
   }
