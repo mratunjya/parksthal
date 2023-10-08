@@ -21,7 +21,7 @@ const nextConfig = {
     return [
       {
         source: "/",
-        destination: "/Log-In",
+        destination: "/log-in",
         permanent: false, // Set to true for a permanent redirect
       },
     ];
