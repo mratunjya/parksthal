@@ -10,7 +10,7 @@ import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
 import { navLinksData } from "@meta/NavBar/navLinksData";
 import { IsAuthenticated } from "@utils/IsAuthenticated";
-import { BLACK, SECONDARY_200, SECONDARY_300, WHITE } from "@colors";
+import { BLACK, SECONDARY_200, SECONDARY_400, WHITE } from "@colors";
 
 import {
   NavBarWrapper,
@@ -19,6 +19,7 @@ import {
   OnlyMobileNavBar,
   HamBurgerButton,
   FallBackNavBar,
+  NavCta,
 } from "./indexStyle";
 
 const CommonNavBar = () => {
@@ -42,11 +43,19 @@ const CommonNavBar = () => {
   const RenderAllNavLinks = () =>
     navLinksData.map((navLink, index) => (
       <CommonLink href={navLink.href} key={index}>
-        <FlexBox align="center" justify="center" padding="0.5rem" toUpper>
-          <H5 whiteSpace="nowrap" color={SECONDARY_300}>
+        <NavCta
+          align="center"
+          justify="center"
+          padding="0.5rem"
+          toUpper
+          border="2px solid transparent"
+          radius="0.5rem"
+          bgColor="transparent"
+        >
+          <H5 whiteSpace="nowrap" color={SECONDARY_400}>
             {navLink.name}
           </H5>
-        </FlexBox>
+        </NavCta>
       </CommonLink>
     ));
 
@@ -58,10 +67,14 @@ const CommonNavBar = () => {
         align="center"
         justify="center"
         position="sticky"
-        padding="0.75rem 0"
         bgColor={chroma(WHITE).alpha(0.75).css()}
       >
-        <NavBar justify="space-between" align="center">
+        <NavBar
+          justify="space-between"
+          align="center"
+          bgColor={WHITE}
+          padding="0.75rem 1.5rem"
+        >
           <CommonLink href="/">
             <CommonImage
               src="/assets/parksthal-logo.svg"
