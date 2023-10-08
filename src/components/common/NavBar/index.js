@@ -13,13 +13,13 @@ import { IsAuthenticated } from "@utils/IsAuthenticated";
 import { BLACK, SECONDARY_200, SECONDARY_400, WHITE } from "@colors";
 
 import {
-  NavBarWrapper,
   NavBar,
-  AllNavLinks,
-  OnlyMobileNavBar,
-  HamBurgerButton,
-  FallBackNavBar,
   NavCta,
+  AllNavLinks,
+  NavBarWrapper,
+  FallBackNavBar,
+  HamBurgerButton,
+  OnlyMobileNavBar,
 } from "./indexStyle";
 
 const CommonNavBar = () => {
@@ -31,6 +31,14 @@ const CommonNavBar = () => {
       e.stopPropagation();
     });
   }, []);
+
+  useEffect(() => {
+    if (isNavOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isNavOpen]);
 
   const openNavBar = () => {
     setIsNavOpen(true);
@@ -68,12 +76,14 @@ const CommonNavBar = () => {
         justify="center"
         position="sticky"
         bgColor={chroma(WHITE).alpha(0.75).css()}
+        bgColorMobile={WHITE}
       >
         <NavBar
-          justify="space-between"
           align="center"
           bgColor={WHITE}
+          justify="space-between"
           padding="0.75rem 1.5rem"
+          paddingMobile="0"
         >
           <CommonLink href="/">
             <CommonImage
@@ -107,43 +117,45 @@ const CommonNavBar = () => {
           </HamBurgerButton>
         </NavBar>
       </NavBarWrapper>
-      {isNavOpen && (
-        <FallBackNavBar
-          onClick={closeNavBar}
-          width="30%"
-          zIndex="2"
-          height="100%"
-          align="center"
-          display="none"
-          justify="center"
-          position="fixed"
-          direction="column"
-          padding="2rem 1rem"
-          displayMobile="flex"
-          bgColor={chroma(BLACK).alpha(0.4).css()}
-        />
-      )}
-      <OnlyMobileNavBar
-        isNavBarOpen={isNavOpen}
-        width="70%"
-        gap="1.5rem"
-        zIndex="100"
-        height="100%"
-        display="none"
-        position="fixed"
-        align="flex-start"
-        direction="column"
-        displayMobile="flex"
-        padding="2rem 1.5rem"
-        bgColor={chroma(WHITE).alpha(0.8).css()}
-      >
-        <FlexBox gap="0.75rem" align="flex-start" direction="column">
-          <RenderAllNavLinks />
-        </FlexBox>
-        {IsAuthenticated() && (
-          <SmallButton onClick={LogOut}>Log Out</SmallButton>
+      <FlexBox>
+        {isNavOpen && (
+          <FallBackNavBar
+            onClick={closeNavBar}
+            width="30%"
+            zIndex="2"
+            height="100%"
+            align="center"
+            display="none"
+            justify="center"
+            position="fixed"
+            direction="column"
+            padding="2rem 1rem"
+            displayMobile="flex"
+            bgColor={chroma(BLACK).alpha(0.4).css()}
+          />
         )}
-      </OnlyMobileNavBar>
+        <OnlyMobileNavBar
+          isNavBarOpen={isNavOpen}
+          width="70%"
+          gap="1.5rem"
+          zIndex="100"
+          height="100%"
+          display="none"
+          position="fixed"
+          align="flex-start"
+          direction="column"
+          displayMobile="flex"
+          padding="2rem 1.5rem"
+          bgColor={chroma(WHITE).alpha(0.8).css()}
+        >
+          <FlexBox gap="0.75rem" align="flex-start" direction="column">
+            <RenderAllNavLinks />
+          </FlexBox>
+          {IsAuthenticated() && (
+            <SmallButton onClick={LogOut}>Log Out</SmallButton>
+          )}
+        </OnlyMobileNavBar>
+      </FlexBox>
     </>
   );
 };
