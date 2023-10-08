@@ -52,6 +52,7 @@ const CommonNavBar = () => {
     navLinksData.map((navLink, index) => (
       <CommonLink href={navLink.href} key={index}>
         <NavCta
+          onClick={closeNavBar}
           align="center"
           justify="center"
           padding="0.5rem"
