@@ -1,5 +1,6 @@
-import Layout from "@layout";
 import styled from "styled-components";
+
+import Layout from "@layout";
 import { H1, H2, P } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
 import { PRIMARY_100, WHITE } from "@colors";

@@ -1,10 +1,11 @@
-import Layout from "@layout";
 import styled from "styled-components";
+
+import Layout from "@layout";
 import { FlexBox } from "@common/FlexBox";
 import { H1, H2, Li, P } from "@common/Text";
 import { PRIMARY_100, WHITE } from "@colors";
 
-const ExternalWrapper = styled(FlexBox)`
+const Wrapper = styled(FlexBox)`
   ol {
     padding: 0.5rem 3.5rem;
 
@@ -22,7 +23,7 @@ const ExternalWrapper = styled(FlexBox)`
   }
 `;
 
-const Wrapper = styled(FlexBox)``;
+const InnerWrapper = styled(FlexBox)``;
 
 const HelpAndFAQ = () => {
   const howDoesItWork = [
@@ -36,8 +37,8 @@ const HelpAndFAQ = () => {
 
   return (
     <Layout title="ParkSthal: Help & FAQ">
-      <ExternalWrapper bgColor={PRIMARY_100}>
-        <Wrapper
+      <Wrapper bgColor={PRIMARY_100}>
+        <InnerWrapper
           width="86.67%"
           maxWidth="75rem"
           margin="0 auto"
@@ -106,8 +107,8 @@ const HelpAndFAQ = () => {
               help you.
             </P>
           </FlexBox>
-        </Wrapper>
-      </ExternalWrapper>
+        </InnerWrapper>
+      </Wrapper>
     </Layout>
   );
 };
