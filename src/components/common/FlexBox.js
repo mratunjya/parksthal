@@ -8,6 +8,7 @@ export const FlexBox = styled.div`
   justify-content: ${(props) => props.justify};
   align-items: ${(props) => props.align};
   align-content: ${(props) => props.content};
+  flex: ${(props) => props.flex};
 
   /* Dimension properties */
   width: ${(props) => props.width};
@@ -116,7 +117,8 @@ export const FlexBox = styled.div`
     gap: ${(props) => props.gapMobile};
     row-gap: ${(props) => props.rowGapMobile};
     column-gap: ${(props) => props.colGapMobile};
-    font-weight: ${(props) => props.mobileWeight};
+    font-weight: ${(props) => props.weightMobile};
+    flex: ${(props) => props.flexMobile};
 
     ${(props) => props.cssMobile};
   }
