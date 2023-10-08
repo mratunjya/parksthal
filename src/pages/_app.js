@@ -11,7 +11,7 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);

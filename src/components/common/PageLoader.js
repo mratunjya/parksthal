@@ -19,7 +19,7 @@ const Circle = styled.svg`
 `;
 
 const PageLoader = () => (
-  <FlexBox>
+  <FlexBox flex="1" justify="center" align="center">
     <Circle
       className="h-8 w-8 animate-spin fill-primary-700 text-accent-400 "
       style={{}}
