@@ -22,6 +22,8 @@ export const P = styled.p`
   }
 `;
 
+export const Li = styled(P).attrs({ as: "li" })``;
+
 // Heading styles
 
 export const H1 = styled(P).attrs({ as: "h1" })``;
