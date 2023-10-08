@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
-import { FlexBox } from "@common/FlexBox";
 import { LogOut } from "@utils/LogOut";
+import { FlexBox } from "@common/FlexBox";
 import CommonLink from "@common/CommonLink";
 import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
@@ -53,12 +53,12 @@ const CommonNavBar = () => {
   return (
     <>
       <NavBarWrapper
-        justify="center"
-        align="center"
-        padding="0.75rem 0"
-        position="sticky"
         top="0"
         left="0"
+        align="center"
+        justify="center"
+        position="sticky"
+        padding="0.75rem 0"
         bgColor={chroma(WHITE).alpha(0.75).css()}
       >
         <NavBar justify="space-between" align="center">
@@ -69,7 +69,6 @@ const CommonNavBar = () => {
               height={22.12}
               alt="ParkSthal Logo"
               objectFit={"cover"}
-              quality={0}
             ></CommonImage>
           </CommonLink>
           <AllNavLinks align="center" gap="1.5rem" position="relative">
@@ -98,35 +97,39 @@ const CommonNavBar = () => {
       {isNavOpen && (
         <FallBackNavBar
           onClick={closeNavBar}
+          width="30%"
+          zIndex="2"
+          height="100%"
+          align="center"
+          display="none"
+          justify="center"
+          position="fixed"
           direction="column"
           padding="2rem 1rem"
-          justify="center"
-          align="center"
-          position="fixed"
-          width="30%"
-          height="100%"
-          zIndex="2"
-          opacity="0.4"
-          bgColor={BLACK}
-          display="none"
           displayMobile="flex"
+          bgColor={chroma(BLACK).alpha(0.4).css()}
         />
       )}
       <OnlyMobileNavBar
-        width="70%"
-        position="fixed"
-        direction="column"
-        padding="2rem 1.5rem"
         isNavBarOpen={isNavOpen}
+        width="70%"
+        gap="1.5rem"
         zIndex="100"
-        bgColor={chroma(WHITE).alpha(0.8).css()}
         height="100%"
         display="none"
-        displayMobile="flex"
-        gap="1.5rem"
+        position="fixed"
         align="flex-start"
+        direction="column"
+        displayMobile="flex"
+        padding="2rem 1.5rem"
+        bgColor={chroma(WHITE).alpha(0.8).css()}
       >
-        <RenderAllNavLinks />
+        <FlexBox gap="0.75rem" align="flex-start" direction="column">
+          <RenderAllNavLinks />
+        </FlexBox>
+        {IsAuthenticated() && (
+          <SmallButton onClick={LogOut}>Log Out</SmallButton>
+        )}
       </OnlyMobileNavBar>
     </>
   );

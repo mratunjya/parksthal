@@ -1,7 +1,8 @@
-import { FlexBox } from "@common/FlexBox";
+import chroma from "chroma-js";
 import styled, { keyframes } from "styled-components";
 
-import { SECONDARY_100 } from "@colors";
+import { FlexBox } from "@common/FlexBox";
+import { SECONDARY_100, BLACK } from "@colors";
 
 export const NavBarWrapper = styled(FlexBox).attrs({ as: "nav" })`
   backdrop-filter: saturate(180%) blur(20px);
@@ -67,15 +68,18 @@ export const HamBurgerButton = styled(FlexBox)``;
 const FallBackNavBarAnimation = keyframes`
   0% {
     width: 100%;
-    opacity: 0;
+    backdrop-filter: saturate(180%) blur(0);
+    background-color: ${chroma(BLACK).alpha(0).css()};
   }
 
   100% {
     width: 30%;
-    opacity: 0.4;
+    backdrop-filter: saturate(180%) blur(10px);
+    background-color: ${chroma(BLACK).alpha(0.4).css()};
   }
 `;
 
 export const FallBackNavBar = styled(FlexBox)`
+  backdrop-filter: saturate(180%) blur(10px);
   animation: ${FallBackNavBarAnimation} 300ms ease-in-out;
 `;
