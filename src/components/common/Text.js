@@ -3,12 +3,23 @@ import styled from "styled-components";
 // Paragraph style
 
 export const P = styled.p`
-  font-size: ${(props) => props.fontSize};
-  font-weight: ${(props) => props.fontWeight};
   color: ${(props) => props.color};
   margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  font-size: ${(props) => props.fontSize};
+  font-weight: ${(props) => props.fontWeight};
   line-height: ${(props) => props.lineHeight};
   white-space: ${(props) => props.whiteSpace};
+
+  @media (max-width: 768px) {
+    color: ${(props) => props.colorMobile};
+    margin: ${(props) => props.marginMobile};
+    padding: ${(props) => props.paddingMobile};
+    font-size: ${(props) => props.fontSizeMobile};
+    font-weight: ${(props) => props.fontWeightMobile};
+    line-height: ${(props) => props.lineHeightMobile};
+    white-space: ${(props) => props.whiteSpaceMobile};
+  }
 `;
 
 // Heading styles
