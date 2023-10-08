@@ -3,7 +3,13 @@ import styled, { keyframes } from "styled-components";
 
 import { H5 } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
-import { SECONDARY_100, BLACK, SECONDARY_400, TERTIARY_200 } from "@colors";
+import {
+  SECONDARY_100,
+  BLACK,
+  SECONDARY_400,
+  TERTIARY_200,
+  WHITE,
+} from "@colors";
 
 export const NavBarWrapper = styled(FlexBox).attrs({ as: "nav" })`
   backdrop-filter: saturate(180%) blur(1.25rem);
@@ -70,8 +76,18 @@ export const OnlyMobileNavBarExitingAnimation = keyframes`
 `;
 
 export const OnlyMobileNavBar = styled(FlexBox).attrs({ as: "nav" })`
-  display: none;
   backdrop-filter: saturate(180%) blur(1.25rem);
+
+  &::before {
+    content: "";
+    left: 0;
+    width: 100%;
+    display: block;
+    top: -0.3125rem;
+    height: 0.625rem;
+    position: absolute;
+    background-color: ${WHITE};
+  }
 
   @media (max-width: 768px) {
     display: flex;

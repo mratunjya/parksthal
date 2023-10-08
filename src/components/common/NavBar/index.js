@@ -26,13 +26,6 @@ const CommonNavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   useEffect(() => {
-    document.body.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    });
-  }, []);
-
-  useEffect(() => {
     if (isNavOpen) {
       document.body.style.overflow = "hidden";
     } else {
