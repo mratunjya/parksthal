@@ -5,24 +5,24 @@ import { PRIMARY_500 } from "@colors";
 
 const DotPulseAnimation = keyframes`
   0% {
-    top: -5px;
+    top: -0.3125rem;
     transform: scale(1);
   }
   100% {
-    top: 5px;
+    top: 0.3125rem;
     transform: scale(1);
   }
 `;
 
 const DotPulseWrapper = styled(FlexBox)`
-  width: 12px;
+  width: 0.75rem;
   aspect-ratio: 1;
   border-radius: 50%;
   position: relative;
 `;
 
 const DotPulse = styled(FlexBox)`
-  width: 12px;
+  width: 0.75rem;
   aspect-ratio: 1;
   border-radius: 50%;
   position: absolute;
