@@ -23,6 +23,7 @@ const LogIn = () => {
         heightMobile="unset"
         paddingMobile="1.5rem 0"
         flex="1"
+        flexMobile="unset"
       >
         <H1>
           Welcome to ParkSthal!

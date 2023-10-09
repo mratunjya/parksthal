@@ -3,7 +3,7 @@ import GlobalStyles from "@GlobalStyles";
 import NextNProgress from "nextjs-progressbar";
 import { SessionProvider } from "next-auth/react";
 
-import { PRIMARY_500, TERTIARY_900 } from "@colors";
+import { PRIMARY_500 } from "@colors";
 import PageLoader from "@common/PageLoader";
 import { useEffect, useState } from "react";
 
