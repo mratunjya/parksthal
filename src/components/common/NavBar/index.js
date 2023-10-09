@@ -10,7 +10,13 @@ import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
 import { navLinksData } from "@meta/NavBar/navLinksData";
 import { IsAuthenticated } from "@utils/IsAuthenticated";
-import { BLACK, SECONDARY_200, SECONDARY_400, WHITE } from "@colors";
+import {
+  BLACK,
+  SECONDARY_200,
+  SECONDARY_400,
+  TERTIARY_200,
+  WHITE,
+} from "@colors";
 
 import {
   NavBar,
@@ -21,9 +27,11 @@ import {
   HamBurgerButton,
   OnlyMobileNavBar,
 } from "./indexStyle";
+import { Loader } from "@common/Loader";
 
 const CommonNavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isLogOutClick, setIsLogOutClick] = useState(false);
 
   useEffect(() => {
     if (isNavOpen) {
@@ -78,6 +86,7 @@ const CommonNavBar = () => {
           justify="space-between"
           padding="0.75rem 1.5rem"
           paddingMobile="0"
+          gap="1rem"
         >
           <CommonLink href="/">
             <CommonImage
@@ -88,12 +97,27 @@ const CommonNavBar = () => {
               objectFit={"cover"}
             ></CommonImage>
           </CommonLink>
-          <AllNavLinks align="center" gap="1.5rem" position="relative">
+          <AllNavLinks
+            align="center"
+            gap="1.5rem"
+            position="relative"
+            wrap="wrap"
+            justify="flex-end"
+            rowGap="0.5rem"
+          >
             <FlexBox align="center" justify="center" gap="0.75rem">
               <RenderAllNavLinks />
             </FlexBox>
             {IsAuthenticated() && (
-              <SmallButton onClick={LogOut}>Log Out</SmallButton>
+              <SmallButton
+                onClick={() => {
+                  setIsLogOutClick(true);
+                  LogOut();
+                }}
+                disabled={isLogOutClick}
+              >
+                {isLogOutClick ? <Loader color={TERTIARY_200} /> : "Log Out"}
+              </SmallButton>
             )}
           </AllNavLinks>
           <HamBurgerButton
@@ -146,7 +170,15 @@ const CommonNavBar = () => {
             <RenderAllNavLinks />
           </FlexBox>
           {IsAuthenticated() && (
-            <SmallButton onClick={LogOut}>Log Out</SmallButton>
+            <SmallButton
+              onClick={() => {
+                setIsLogOutClick(true);
+                LogOut();
+              }}
+              disabled={isLogOutClick}
+            >
+              {isLogOutClick ? <Loader color={TERTIARY_200} /> : "Log Out"}
+            </SmallButton>
           )}
         </OnlyMobileNavBar>
       </FlexBox>

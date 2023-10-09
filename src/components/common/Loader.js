@@ -27,7 +27,7 @@ const DotPulse = styled(FlexBox)`
   border-radius: 50%;
   position: absolute;
   transform: scale(0);
-  background-color: ${PRIMARY_500};
+  background-color: ${(props) => props.color || PRIMARY_500};
   animation: ${DotPulseAnimation} 0.75s infinite alternate;
 `;
 
@@ -43,7 +43,7 @@ const DotPulseRight = styled(DotPulse)`
   animation-delay: 0.75s;
 `;
 
-export const Loader = () => (
+export const Loader = ({ color }) => (
   <FlexBox
     align="center"
     justify="center"
@@ -52,13 +52,13 @@ export const Loader = () => (
     gap="10px"
   >
     <DotPulseWrapper>
-      <DotPulseLeft />
+      <DotPulseLeft color={color} />
     </DotPulseWrapper>
     <DotPulseWrapper>
-      <DotPulseMiddle />
+      <DotPulseMiddle color={color} />
     </DotPulseWrapper>
     <DotPulseWrapper>
-      <DotPulseRight />
+      <DotPulseRight color={color} />
     </DotPulseWrapper>
   </FlexBox>
 );
