@@ -2,6 +2,7 @@
   "compilerOptions": {
     "paths": {
       // "@/*": ["./src/*"],
+      "@Auth": ["./src/utils/Auth.js"],
       "@colors": ["./src/constants/colors.js"],
       "@common/*": ["./src/components/common/*"],
       "@components/*": ["./src/components/*"],

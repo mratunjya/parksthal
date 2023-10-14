@@ -6,11 +6,16 @@ import { BsFacebook } from "react-icons/bs";
 
 import { Loader } from "@loader";
 import { H3 } from "@common/Text";
+import checkSvg from "./assets/check.svg";
 import { FlexBox } from "@common/FlexBox";
 import { LargeButton } from "@common/Button";
+import CommonImage from "@common/CommonImage";
+import { IsAuthenticated, SessionStatus } from "@Auth";
 import { SECONDARY_100, SECONDARY_500, WHITE } from "@colors";
 
 const AuthLogInBtns = () => {
+  const sessionStatus = SessionStatus();
+  const isAuthenticated = IsAuthenticated();
   const [isLoading, setIsLoading] = useState(false);
 
   const googleLogInHandler = () => {
@@ -40,8 +45,24 @@ const AuthLogInBtns = () => {
     >
       {isLoading ? (
         <>
-          <H3>Authenticating ..</H3>
+          <H3>Authenticating ...</H3>
           <Loader />
+        </>
+      ) : sessionStatus === "loading" ? (
+        <>
+          <H3>Getting session Status ...</H3>
+          <Loader />
+        </>
+      ) : isAuthenticated ? (
+        <>
+          <H3>Already Authenticated !!!</H3>
+          <CommonImage
+            src={checkSvg}
+            alt={"check"}
+            width={100}
+            align="center"
+            margin={"1.25rem 0 0"}
+          ></CommonImage>
         </>
       ) : (
         <>

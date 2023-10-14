@@ -11,7 +11,7 @@ const Wrapper = styled(FlexBox)``;
 
 const Contact = () => {
   return (
-    <Layout title="Contact ParkSthal">
+    <Layout title="ParkSthal: Contact">
       <ExternalWrapper minHeigth="" bgColor={PRIMARY_100} flex="1">
         <Wrapper
           width="86.67%"

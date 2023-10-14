@@ -1,35 +1,43 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-const CustomImage = styled(Image)``;
+const CustomImage = styled(Image)`
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
+  align-self: ${(props) => props.align};
+`;
 
 const CommonImage = ({
   src,
   alt,
+  top,
+  left,
   width,
+  align,
   height,
+  margin,
   quality,
   priority,
   padding,
   position,
-  top,
   objectFit,
-  left,
 }) => {
   return (
     <CustomImage
+      top={top}
       src={src}
       alt={alt}
-      width={width}
-      height={height}
-      quality={quality || 60}
-      priority={priority || true}
-      padding={padding || "0"}
-      draggable={false}
-      position={position}
-      top={top}
       left={left}
+      width={width}
+      align={align}
+      margin={margin}
+      height={height}
+      draggable={false}
+      padding={padding}
+      position={position}
+      priority={priority}
       objectFit={objectFit}
+      quality={quality || 60}
     />
   );
 };

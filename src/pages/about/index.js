@@ -11,7 +11,7 @@ const InnerWrapper = styled(FlexBox)``;
 
 const About = () => {
   return (
-    <Layout title="ParkSthal: Log In">
+    <Layout title="ParkSthal: About">
       <Wrapper bgColor={PRIMARY_100}>
         <InnerWrapper
           width="86.67%"

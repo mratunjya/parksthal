@@ -9,7 +9,7 @@ import CommonLink from "@common/CommonLink";
 import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
 import { navLinksData } from "@meta/NavBar/navLinksData";
-import { IsAuthenticated } from "@utils/IsAuthenticated";
+import { IsAuthenticated } from "@Auth";
 import {
   BLACK,
   SECONDARY_200,
