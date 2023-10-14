@@ -38,6 +38,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-weight: 400;
 }
 
 #__next,
@@ -105,11 +106,6 @@ li {
 
   h2 {
     font-size: 1.35rem;
-  }
-
-  p,
-  li {
-    font-size: 0.75rem;
   }
 
   .no-mobile {
