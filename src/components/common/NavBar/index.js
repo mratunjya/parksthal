@@ -4,12 +4,12 @@ import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
 import { LogOut } from "@utils/LogOut";
+import { IsAuthenticated } from "@Auth";
 import { FlexBox } from "@common/FlexBox";
 import CommonLink from "@common/CommonLink";
 import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
 import { navLinksData } from "@meta/NavBar/navLinksData";
-import { IsAuthenticated } from "@Auth";
 import {
   BLACK,
   SECONDARY_200,
