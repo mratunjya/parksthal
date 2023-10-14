@@ -100,8 +100,8 @@ const About = () => {
             <H2>Contact Us</H2>
             <P>
               Have questions or feedback? We&apos;d love to hear from you!
-              Contact our friendly team at{" "}
-              <strong>contact.parksthal@gmail.com</strong>
+              Contact our friendly team at
+              <strong> contact.parksthal@gmail.com </strong>
             </P>
           </FlexBox>
           <FlexBox direction="column" gap="0.75rem">

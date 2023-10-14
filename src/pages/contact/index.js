@@ -31,7 +31,7 @@ const Contact = () => {
             <H2>Have Questions or Feedback?</H2>
             <P>
               We&apos;d love to hear from you! Contact our friendly team at
-              <strong>contact.parksthal@gmail.com</strong> for inquiries,
+              <strong> contact.parksthal@gmail.com </strong> for inquiries,
               feedback, or collaborations.
             </P>
           </FlexBox>
@@ -56,7 +56,7 @@ const Contact = () => {
             <H2>Media Inquiries</H2>
             <P>
               For media inquiries or interview requests, please contact
-              <strong>media.parksthal@gmail.com</strong>. We&apos;re happy to
+              <strong> media.parksthal@gmail.com</strong>. We&apos;re happy to
               provide information and insights on urban parking and mobility.
             </P>
           </FlexBox>
