@@ -1,21 +1,23 @@
 import chroma from "chroma-js";
 import { useEffect, useState } from "react";
+import { BsWhatsapp } from "react-icons/bs";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
 import { LogOut } from "@utils/LogOut";
-import { IsAuthenticated } from "@Auth";
 import { FlexBox } from "@common/FlexBox";
 import CommonLink from "@common/CommonLink";
 import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
+import { IsAuthenticated, SessionStatus } from "@Auth";
 import { navLinksData } from "@meta/NavBar/navLinksData";
 import {
+  WHITE,
   BLACK,
+  TERTIARY_200,
   SECONDARY_200,
   SECONDARY_400,
-  TERTIARY_200,
-  WHITE,
+  WHATSAPPGREEN,
 } from "@colors";
 
 import {
@@ -28,10 +30,21 @@ import {
   OnlyMobileNavBar,
 } from "./indexStyle";
 import { Loader } from "@common/Loader";
+import styled from "styled-components";
+
+const WhatsappWrapper = styled(FlexBox)`
+  &:hover {
+    svg {
+      scale: 1.25;
+    }
+  }
+`;
 
 const CommonNavBar = () => {
+  const isAuthenticated = IsAuthenticated();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLogOutClick, setIsLogOutClick] = useState(false);
+  const isSessionStatusLoading = SessionStatus() === "loading";
 
   useEffect(() => {
     if (isNavOpen) {
@@ -48,6 +61,18 @@ const CommonNavBar = () => {
   const closeNavBar = () => {
     setIsNavOpen(false);
   };
+
+  const RenderLogo = () => (
+    <CommonLink href="/">
+      <CommonImage
+        src="/assets/parksthal-logo.svg"
+        width={150}
+        height={22.12}
+        alt="ParkSthal Logo"
+        objectFit={"cover"}
+      ></CommonImage>
+    </CommonLink>
+  );
 
   const RenderAllNavLinks = () =>
     navLinksData.map((navLink, index) => (
@@ -69,6 +94,45 @@ const CommonNavBar = () => {
       </CommonLink>
     ));
 
+  const RenderWhatsAppBtn = () => (
+    <CommonLink
+      target="_blank"
+      href="https://api.whatsapp.com/send?phone=9997168704"
+    >
+      <WhatsappWrapper
+        ratio="1"
+        radius="50%"
+        width="2.5rem"
+        align="center"
+        justify="center"
+        bgColor={WHATSAPPGREEN}
+      >
+        <BsWhatsapp color={WHITE} />
+      </WhatsappWrapper>
+    </CommonLink>
+  );
+
+  const RenderLogInLogOut = () =>
+    isSessionStatusLoading ? (
+      <SmallButton>
+        <Loader color={TERTIARY_200} />
+      </SmallButton>
+    ) : isAuthenticated ? (
+      <SmallButton
+        onClick={() => {
+          setIsLogOutClick(true);
+          LogOut();
+        }}
+        disabled={isLogOutClick}
+      >
+        {isLogOutClick ? <Loader color={TERTIARY_200} /> : "Log Out"}
+      </SmallButton>
+    ) : (
+      <CommonLink href="/log-in">
+        <SmallButton>Log In</SmallButton>
+      </CommonLink>
+    );
+
   return (
     <>
       <NavBarWrapper
@@ -88,15 +152,7 @@ const CommonNavBar = () => {
           paddingMobile="0"
           gap="1rem"
         >
-          <CommonLink href="/">
-            <CommonImage
-              src="/assets/parksthal-logo.svg"
-              width={150}
-              height={22.12}
-              alt="ParkSthal Logo"
-              objectFit={"cover"}
-            ></CommonImage>
-          </CommonLink>
+          <RenderLogo />
           <AllNavLinks
             align="center"
             gap="1.5rem"
@@ -108,17 +164,8 @@ const CommonNavBar = () => {
             <FlexBox align="center" justify="center" gap="0.75rem">
               <RenderAllNavLinks />
             </FlexBox>
-            {IsAuthenticated() && (
-              <SmallButton
-                onClick={() => {
-                  setIsLogOutClick(true);
-                  LogOut();
-                }}
-                disabled={isLogOutClick}
-              >
-                {isLogOutClick ? <Loader color={TERTIARY_200} /> : "Log Out"}
-              </SmallButton>
-            )}
+            <RenderWhatsAppBtn />
+            <RenderLogInLogOut />
           </AllNavLinks>
           <HamBurgerButton
             display="none"
@@ -169,17 +216,10 @@ const CommonNavBar = () => {
           <FlexBox gap="0.75rem" align="flex-start" direction="column">
             <RenderAllNavLinks />
           </FlexBox>
-          {IsAuthenticated() && (
-            <SmallButton
-              onClick={() => {
-                setIsLogOutClick(true);
-                LogOut();
-              }}
-              disabled={isLogOutClick}
-            >
-              {isLogOutClick ? <Loader color={TERTIARY_200} /> : "Log Out"}
-            </SmallButton>
-          )}
+          <FlexBox gap="1rem" align="center" justify="center">
+            <RenderWhatsAppBtn />
+            <RenderLogInLogOut />
+          </FlexBox>
         </OnlyMobileNavBar>
       </FlexBox>
     </>

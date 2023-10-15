@@ -9,7 +9,14 @@ const CommonLinkComponent = styled(Link)`
   }
 `;
 
-const CommonLink = ({ href, children }) => {
+const CommonLink = ({ href, children, target }) => {
+  if (href?.indexOf("http") === 0)
+    return (
+      <a href={href} target={target}>
+        {children}
+      </a>
+    );
+
   return <CommonLinkComponent href={href}>{children}</CommonLinkComponent>;
 };
 

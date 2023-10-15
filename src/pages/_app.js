@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import { PRIMARY_500 } from "@colors";
 import PageLoader from "@common/PageLoader";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 export default function App({
   Component,
@@ -19,6 +20,9 @@ export default function App({
 
   return isLoaded ? (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <GlobalStyles />
       <NextNProgress
         color={PRIMARY_500}
