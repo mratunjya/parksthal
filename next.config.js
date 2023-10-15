@@ -22,7 +22,7 @@ const nextConfig = {
       {
         source: "/",
         destination: "/log-in",
-        permanent: false, // Set to true for a permanent redirect
+        permanent: true,
       },
     ];
   },

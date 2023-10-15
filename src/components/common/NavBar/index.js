@@ -164,7 +164,7 @@ const CommonNavBar = () => {
             <FlexBox align="center" justify="center" gap="0.75rem">
               <RenderAllNavLinks />
             </FlexBox>
-            <FlexBox gap="1.5rem">
+            <FlexBox gap="1.5rem" align="center" justify="center">
               <RenderWhatsAppBtn />
               <RenderLogInLogOut />
             </FlexBox>
