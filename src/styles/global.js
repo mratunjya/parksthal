@@ -9,9 +9,9 @@ const GlobalStyles = createGlobalStyle`
   /* Global CSS rules */
   html,
   body {
+    ${font.style};
     color: ${SECONDARY_800};
     background-color: ${WHITE};
-    ${font.style};
   }
 
   *::selection {

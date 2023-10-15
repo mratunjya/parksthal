@@ -40,4 +40,5 @@ export const TERTIARY_900 = chroma(TERTIARY_COLOR).darken(0.8).hex();
 // Other colors
 export const WHITE = "#ffffff";
 export const BLACK = "#000000";
-export const WHATSAPPGREEN = "#25d366";
+export const FACEBOOK_BLUE = "#1877F2";
+export const WHATSAPP_GREEN = "#25d366";

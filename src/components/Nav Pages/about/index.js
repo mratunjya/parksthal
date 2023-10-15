@@ -6,18 +6,20 @@ import { H1, H2, P } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
 import { PRIMARY_100, WHITE } from "@colors";
 
-const Wrapper = styled(FlexBox)`
-  background-image: url(${bg.src});
-  background-size: 25%;
-`;
+const ExternalWrapper = styled(FlexBox)``;
 
-const InnerWrapper = styled(FlexBox)``;
+const Wrapper = styled(FlexBox)``;
 
 const About = () => {
   return (
     <Layout title="ParkSthal: About">
-      <Wrapper bgColor={PRIMARY_100}>
-        <InnerWrapper
+      <ExternalWrapper
+        flex="1"
+        bgSize="25%"
+        bgImage={bg.src}
+        bgColor={PRIMARY_100}
+      >
+        <Wrapper
           width="86.67%"
           maxWidth="75rem"
           margin="0 auto"
@@ -173,8 +175,8 @@ const About = () => {
               can list your spaces and start earning from them.
             </P>
           </FlexBox>
-        </InnerWrapper>
-      </Wrapper>
+        </Wrapper>
+      </ExternalWrapper>
     </Layout>
   );
 };

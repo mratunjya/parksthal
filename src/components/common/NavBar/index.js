@@ -1,6 +1,6 @@
 import chroma from "chroma-js";
-import { useEffect, useState } from "react";
 import { BsWhatsapp } from "react-icons/bs";
+import { useEffect, useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
@@ -17,7 +17,7 @@ import {
   TERTIARY_200,
   SECONDARY_200,
   SECONDARY_400,
-  WHATSAPPGREEN,
+  WHATSAPP_GREEN,
 } from "@colors";
 
 import {
@@ -39,11 +39,9 @@ const CommonNavBar = () => {
   const isSessionStatusLoading = SessionStatus() === "loading";
 
   useEffect(() => {
-    if (isNavOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    isNavOpen
+      ? document.body.classList.add("no-overflow")
+      : document.body.classList.remove("no-overflow");
   }, [isNavOpen]);
 
   const openNavBar = () => {
@@ -97,7 +95,7 @@ const CommonNavBar = () => {
         width="2.5rem"
         align="center"
         justify="center"
-        bgColor={WHATSAPPGREEN}
+        bgColor={WHATSAPP_GREEN}
       >
         <BsWhatsapp color={WHITE} />
       </WhatsappWrapper>
@@ -112,8 +110,8 @@ const CommonNavBar = () => {
     ) : isAuthenticated ? (
       <SmallButton
         onClick={() => {
-          setIsLogOutClick(true);
           LogOut();
+          setIsLogOutClick(true);
         }}
         disabled={isLogOutClick}
       >
@@ -137,12 +135,12 @@ const CommonNavBar = () => {
         bgColor={chroma(WHITE).alpha(0.75).css()}
       >
         <NavBar
+          gap="1rem"
           align="center"
           bgColor={WHITE}
           paddingMobile="0"
           justify="space-between"
           padding="0.75rem 1.5rem"
-          gap="1rem"
         >
           <RenderLogo />
           <AllNavLinks
@@ -163,8 +161,8 @@ const CommonNavBar = () => {
           </AllNavLinks>
           <HamBurgerButton
             display="none"
-            displayMobile="flex"
             width="fit-content"
+            displayMobile="flex"
             padding="0.5rem 0 0.5rem 0.5rem"
             onClick={isNavOpen ? closeNavBar : openNavBar}
           >

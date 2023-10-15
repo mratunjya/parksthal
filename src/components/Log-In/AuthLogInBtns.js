@@ -11,7 +11,7 @@ import { FlexBox } from "@common/FlexBox";
 import { LargeButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
 import { IsAuthenticated, SessionStatus } from "@Auth";
-import { SECONDARY_100, SECONDARY_500, WHITE } from "@colors";
+import { FACEBOOK_BLUE, SECONDARY_100, SECONDARY_500, WHITE } from "@colors";
 
 const AuthLogInBtns = () => {
   const sessionStatus = SessionStatus();
@@ -57,9 +57,9 @@ const AuthLogInBtns = () => {
         <>
           <H3>Already Authenticated !!!</H3>
           <CommonImage
-            src={checkSvg}
-            alt={"check"}
             width={100}
+            alt={"check"}
+            src={checkSvg}
             align="center"
             margin={"1.25rem 0 0"}
           ></CommonImage>
@@ -69,17 +69,17 @@ const AuthLogInBtns = () => {
           <H3 className="only-mobile">Continue with</H3>
           <FlexBox direction="column" gap="2.5rem" gapMobile="1.5rem">
             <LargeButton
-              bgColor={WHITE}
-              radius="1.3125rem"
+              onClick={googleLogInHandler}
               gap="1rem"
+              width="100%"
+              bgColor={WHITE}
+              textAlign="left"
+              radius="1.3125rem"
+              whiteSpace="nowrap"
+              justify="flex-start"
+              textColor={SECONDARY_500}
               padding="1.5rem !important"
               paddingMobile="1rem !important"
-              textColor={SECONDARY_500}
-              textAlign="left"
-              justify="flex-start"
-              width="100%"
-              whiteSpace="nowrap"
-              onClick={googleLogInHandler}
             >
               <FcGoogle />
               <span>
@@ -87,16 +87,16 @@ const AuthLogInBtns = () => {
               </span>
             </LargeButton>
             <LargeButton
-              bgColor="#1877F2"
-              radius="1.3125rem"
+              onClick={facebookLogInHandler}
               gap="1rem"
+              width="100%"
+              textAlign="left"
+              radius="1.3125rem"
+              whiteSpace="nowrap"
+              justify="flex-start"
+              bgColor={FACEBOOK_BLUE}
               padding="1.5rem !important"
               paddingMobile="1rem !important"
-              textAlign="left"
-              justify="flex-start"
-              width="100%"
-              whiteSpace="nowrap"
-              onClick={facebookLogInHandler}
             >
               <BsFacebook />
               <span>

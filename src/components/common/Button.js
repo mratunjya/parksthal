@@ -1,20 +1,21 @@
-import { FlexBox } from "@common/FlexBox";
 import styled from "styled-components";
+
+import { FlexBox } from "@common/FlexBox";
 import { PRIMARY_500, WHITE } from "@colors";
 
 const Button = styled(FlexBox).attrs({ as: "button" })`
   &::after,
   &::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
     top: 50%;
+    width: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
+    height: 0;
+    content: "";
     opacity: 0.1;
+    overflow: hidden;
+    position: absolute;
     background: ${WHITE};
+    transform: translate(-50%, -50%);
   }
 
   &:focus,
@@ -34,17 +35,15 @@ const Button = styled(FlexBox).attrs({ as: "button" })`
 `;
 
 Button.defaultProps = {
-  justify: "center",
-  align: "center",
   border: "none",
-  position: "relative",
-  radius: "6.25rem",
-  transform: "uppercase",
   weight: "bold",
+  align: "center",
   spacing: "0.1em",
-  bgColor: PRIMARY_500,
   textColor: WHITE,
-  textTransform: "uppercase",
+  radius: "6.25rem",
+  justify: "center",
+  bgColor: PRIMARY_500,
+  position: "relative",
 };
 
 export const SmallButton = styled(Button)`

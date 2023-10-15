@@ -4,16 +4,16 @@ import styled, { keyframes } from "styled-components";
 import { H5 } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
 import {
-  SECONDARY_100,
-  BLACK,
-  SECONDARY_400,
-  TERTIARY_200,
   WHITE,
+  BLACK,
+  TERTIARY_200,
+  SECONDARY_100,
+  SECONDARY_400,
 } from "@colors";
 
 export const NavBarWrapper = styled(FlexBox).attrs({ as: "nav" })`
-  backdrop-filter: saturate(180%) blur(1.25rem);
   box-shadow: 0rem 0rem 0.5rem ${SECONDARY_100};
+  backdrop-filter: saturate(180%) blur(1.25rem);
 
   & * {
     user-select: none;
@@ -63,23 +63,23 @@ export const NavCta = styled(FlexBox)`
 
 export const OnlyMobileNavBarEnteringAnimation = keyframes`
   0% {
-    transform: translateX(100%);
     opacity: 0.5;
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(0%);
     opacity: 1;
+    transform: translateX(0%);
   }
 `;
 
 export const OnlyMobileNavBarExitingAnimation = keyframes`
   0% {
-    transform: translateX(0%);
     opacity: 1;
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(100%);
     opacity: 0.5;
+    transform: translateX(100%);
   }
 `;
 

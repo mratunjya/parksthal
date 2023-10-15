@@ -6,17 +6,19 @@ import { H1, H2, P } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
 import { PRIMARY_100, WHITE } from "@colors";
 
-const ExternalWrapper = styled(FlexBox)`
-  background-image: url(${bg.src});
-  background-size: 25%;
-`;
+const ExternalWrapper = styled(FlexBox)``;
 
 const Wrapper = styled(FlexBox)``;
 
 const Contact = () => {
   return (
     <Layout title="ParkSthal: Contact">
-      <ExternalWrapper minHeigth="" bgColor={PRIMARY_100} flex="1">
+      <ExternalWrapper
+        flex="1"
+        bgSize="25%"
+        bgImage={bg.src}
+        bgColor={PRIMARY_100}
+      >
         <Wrapper
           width="86.67%"
           maxWidth="75rem"
