@@ -1,12 +1,13 @@
 import "@styles/globals.css";
+
+import Head from "next/head";
 import GlobalStyles from "@GlobalStyles";
+import { useEffect, useState } from "react";
 import NextNProgress from "nextjs-progressbar";
 import { SessionProvider } from "next-auth/react";
 
 import { PRIMARY_500 } from "@colors";
 import PageLoader from "@common/PageLoader";
-import { useEffect, useState } from "react";
-import Head from "next/head";
 
 export default function App({
   Component,

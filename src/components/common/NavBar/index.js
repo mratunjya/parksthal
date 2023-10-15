@@ -65,11 +65,11 @@ const CommonNavBar = () => {
   const RenderLogo = () => (
     <CommonLink href="/">
       <CommonImage
-        src="/assets/parksthal-logo.svg"
         width={150}
         height={22.12}
-        alt="ParkSthal Logo"
         objectFit={"cover"}
+        alt="ParkSthal Logo"
+        src="/assets/parksthal-logo.svg"
       ></CommonImage>
     </CommonLink>
   );
@@ -79,13 +79,13 @@ const CommonNavBar = () => {
       <CommonLink href={navLink.href} key={index}>
         <NavCta
           onClick={closeNavBar}
+          toUpper
           align="center"
+          radius="0.5rem"
           justify="center"
           padding="0.5rem"
-          toUpper
-          border="2px solid transparent"
-          radius="0.5rem"
           bgColor="transparent"
+          border="2px solid transparent"
         >
           <H5 whiteSpace="nowrap" color={SECONDARY_400}>
             {navLink.name}
@@ -141,31 +141,33 @@ const CommonNavBar = () => {
         align="center"
         justify="center"
         position="sticky"
-        bgColor={chroma(WHITE).alpha(0.75).css()}
         bgColorMobile={WHITE}
+        bgColor={chroma(WHITE).alpha(0.75).css()}
       >
         <NavBar
           align="center"
           bgColor={WHITE}
+          paddingMobile="0"
           justify="space-between"
           padding="0.75rem 1.5rem"
-          paddingMobile="0"
           gap="1rem"
         >
           <RenderLogo />
           <AllNavLinks
-            align="center"
-            gap="1.5rem"
-            position="relative"
             wrap="wrap"
-            justify="flex-end"
+            gap="1.5rem"
+            align="center"
             rowGap="0.5rem"
+            justify="flex-end"
+            position="relative"
           >
             <FlexBox align="center" justify="center" gap="0.75rem">
               <RenderAllNavLinks />
             </FlexBox>
-            <RenderWhatsAppBtn />
-            <RenderLogInLogOut />
+            <FlexBox gap="1.5rem">
+              <RenderWhatsAppBtn />
+              <RenderLogInLogOut />
+            </FlexBox>
           </AllNavLinks>
           <HamBurgerButton
             display="none"
@@ -186,8 +188,8 @@ const CommonNavBar = () => {
         {isNavOpen && (
           <FallBackNavBar
             onClick={closeNavBar}
-            width="30%"
             zIndex="2"
+            width="30%"
             height="100%"
             align="center"
             display="none"
