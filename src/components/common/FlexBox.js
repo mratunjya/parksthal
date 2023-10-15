@@ -37,7 +37,7 @@ export const FlexBox = styled.div`
   /* Background properties */
   background-size: ${(props) => props.bgSize};
   background-color: ${(props) => props.bgColor};
-  background-image: url(${(props) => `${props.bgImage}`});
+  background-image: ${(props) => props.bgImage && `url("${props.bgImage}")`};
 
   /* Box shadow and opacity */
   opacity: ${(props) => props.opacity};
@@ -50,6 +50,7 @@ export const FlexBox = styled.div`
   bottom: ${(props) => props.bottom};
   overflow: ${(props) => props.overflow};
   position: ${(props) => props.position};
+  transform: ${(props) => props.transform};
 
   /* Z-index and transitions */
   z-index: ${(props) => props.zIndex};
@@ -114,7 +115,8 @@ export const FlexBox = styled.div`
     /* Background properties */
     background-size: ${(props) => props.bgSizeMobile};
     background-color: ${(props) => props.bgColorMobile};
-    background-image: url(${(props) => `${props.bgImageMobile}`});
+    background-image: ${(props) =>
+      props.bgImageMobile && `url("${props.bgImageMobile}")`};
 
     /* Box shadow and opacity */
     opacity: ${(props) => props.opacityMobile};

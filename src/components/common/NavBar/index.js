@@ -53,7 +53,7 @@ const CommonNavBar = () => {
   };
 
   const RenderLogo = () => (
-    <CommonLink href="/">
+    <CommonLink href="/log-in">
       <CommonImage
         width={150}
         height={22.12}
