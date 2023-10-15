@@ -22,7 +22,7 @@ export default function Layout({ title, description, children }) {
         />
       </Head>
       <StyleSheetManager shouldForwardProp={(prop) => isPropValid(prop)}>
-        <ProgressBar bgcolor={SECONDARY_500} height="3px" duration="0" />
+        <ProgressBar bgcolor={SECONDARY_500} height="3px" />
         <NavBar />
         <main>{children}</main>
       </StyleSheetManager>
