@@ -5,6 +5,7 @@
       "@Auth": ["./src/utils/Auth.js"],
       "@colors": ["./src/constants/colors.js"],
       "@common/*": ["./src/components/common/*"],
+      "@constants": ["./src/constants/constants.js"],
       "@components/*": ["./src/components/*"],
       "@GlobalStyles": ["./src/styles/global.js"],
       "@layout": ["./src/layout.js"],
