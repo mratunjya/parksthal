@@ -1,38 +1,42 @@
 {
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "name": "ParkSthal",
+  "display_override": [
+    "fullscreen",
+    "minimal-ui"
+  ],
+  "display": "standalone",
+  "theme_color": "#ffffff",
   "short_name": "ParkSthal",
+  "background_color": "#ffffff",
   "description": "Parking Space Booking App",
   "icons": [
     {
-      "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "src": "/icon-192x192.png"
     },
     {
-      "src": "/maskable_icon.png",
       "sizes": "196x196",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any maskable",
+      "src": "/maskable_icon.png"
     },
     {
-      "src": "/icon-256x256.png",
       "sizes": "256x256",
-      "type": "image/png"
+      "type": "image/png",
+      "src": "/icon-256x256.png"
     },
     {
-      "src": "/icon-384x384.png",
       "sizes": "384x384",
-      "type": "image/png"
+      "type": "image/png",
+      "src": "/icon-384x384.png"
     },
     {
-      "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "src": "/icon-512x512.png"
     }
   ]
 }
