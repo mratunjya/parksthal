@@ -31,6 +31,7 @@ import {
   OnlyMobileNavBar,
 } from "./indexStyle";
 import { Loader } from "@common/Loader";
+import { WHATSAPP_URL } from "@constants";
 
 const CommonNavBar = () => {
   const isAuthenticated = IsAuthenticated();
@@ -85,10 +86,7 @@ const CommonNavBar = () => {
     ));
 
   const RenderWhatsAppBtn = () => (
-    <CommonLink
-      target="_blank"
-      href="https://api.whatsapp.com/send?phone=9997168704"
-    >
+    <CommonLink target="_blank" href={WHATSAPP_URL}>
       <WhatsappWrapper
         ratio="1"
         radius="50%"
