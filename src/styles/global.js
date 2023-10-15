@@ -3,7 +3,13 @@ import { createGlobalStyle } from "styled-components";
 
 import { SECONDARY_800, WHITE } from "@colors";
 
-const font = REM({ subsets: ["latin"] });
+const font = REM({
+  preload: true,
+  display: "swap",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 const GlobalStyles = createGlobalStyle`
   /* Global CSS rules */
