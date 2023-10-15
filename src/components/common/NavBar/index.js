@@ -27,18 +27,10 @@ import {
   NavBarWrapper,
   FallBackNavBar,
   HamBurgerButton,
+  WhatsappWrapper,
   OnlyMobileNavBar,
 } from "./indexStyle";
 import { Loader } from "@common/Loader";
-import styled from "styled-components";
-
-const WhatsappWrapper = styled(FlexBox)`
-  &:hover {
-    svg {
-      scale: 1.25;
-    }
-  }
-`;
 
 const CommonNavBar = () => {
   const isAuthenticated = IsAuthenticated();
@@ -70,7 +62,7 @@ const CommonNavBar = () => {
         objectFit={"cover"}
         alt="ParkSthal Logo"
         src="/assets/parksthal-logo.svg"
-      ></CommonImage>
+      />
     </CommonLink>
   );
 

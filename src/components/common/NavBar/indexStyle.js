@@ -37,6 +37,14 @@ export const AllNavLinks = styled(FlexBox)`
   }
 `;
 
+export const WhatsappWrapper = styled(FlexBox)`
+  &:hover {
+    svg {
+      scale: 1.25;
+    }
+  }
+`;
+
 export const NavCta = styled(FlexBox)`
   &:hover,
   &:focus {

@@ -26,10 +26,10 @@ export default function App({
       </Head>
       <GlobalStyles />
       <NextNProgress
+        height={3}
+        stopDelayMs={200}
         color={PRIMARY_500}
         startPosition={0.3}
-        stopDelayMs={200}
-        height={3}
         showOnShallow={true}
       />
       <SessionProvider session={session}>
