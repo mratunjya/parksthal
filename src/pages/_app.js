@@ -17,9 +17,8 @@ import PageLoader from "@common/PageLoader";
 import CommonLink from "@common/CommonLink";
 import { SECONDARY_200, SECONDARY_500, WHITE } from "@colors";
 
-const BackAndForthWrapper = styled(FlexBox)`
-  opacity: ${(props) => (props.isHidden ? "0" : "1")};
-`;
+const BackAndForthWrapper = styled(FlexBox)``;
+
 const BackwardButton = styled(FlexBox)`
   &:hover {
     transform: scale(1.1);
@@ -116,8 +115,8 @@ export default function App({
             position="fixed"
             padding="0.5rem 0.75rem"
             transform="translateX(-50%)"
+            opacity={isHidden ? "0" : "1"}
             border={`1px solid ${SECONDARY_200}`}
-            isHidden={isHidden} // Pass isHidden as a prop
           >
             <BackwardButton
               onClick={goBack}
