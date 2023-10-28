@@ -42,6 +42,10 @@ body {
   flex-direction: column;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 #__next,
 main {
   flex: 1;
