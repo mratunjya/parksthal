@@ -9,4 +9,8 @@ export const SessionStatus = () => {
   const { status } = useSession();
   return status;
 };
+
+export const SessionUser = () => {
+  const { data } = useSession();
+  return data?.user;
 };
