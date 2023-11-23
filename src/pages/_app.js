@@ -33,7 +33,7 @@ export default function App({
         showOnShallow={true}
       />
       <SessionProvider session={session}>
-          <Component {...pageProps} />
+        <Component {...pageProps} />
       </SessionProvider>
     </>
   ) : (

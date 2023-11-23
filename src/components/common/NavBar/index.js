@@ -5,7 +5,9 @@ import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
 import { H5 } from "@common/Text";
 import { LogOut } from "@utils/LogOut";
+import { Loader } from "@common/Loader";
 import { FlexBox } from "@common/FlexBox";
+import { WHATSAPP_URL } from "@constants";
 import CommonLink from "@common/CommonLink";
 import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
@@ -30,8 +32,6 @@ import {
   WhatsappWrapper,
   OnlyMobileNavBar,
 } from "./indexStyle";
-import { Loader } from "@common/Loader";
-import { WHATSAPP_URL } from "@constants";
 
 const CommonNavBar = () => {
   const isAuthenticated = IsAuthenticated();

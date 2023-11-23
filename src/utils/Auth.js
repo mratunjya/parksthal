@@ -1,11 +1,12 @@
 import { useSession } from "next-auth/react";
 
 export const IsAuthenticated = () => {
-  const session = useSession();
-  return session.status === "authenticated";
+  const { status } = useSession();
+  return status === "authenticated";
 };
 
 export const SessionStatus = () => {
-  const session = useSession();
-  return session.status;
+  const { status } = useSession();
+  return status;
+};
 };

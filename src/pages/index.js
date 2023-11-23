@@ -9,7 +9,7 @@ const ParkSthal = () => {
     router.isReady && router.push("log-in");
   }, [router]);
 
-  return <Layout title={"ParkSthal"}></Layout>;
+  return <Layout title={"ParkSthal"} />;
 };
 
 export default ParkSthal;

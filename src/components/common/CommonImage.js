@@ -2,6 +2,8 @@ import Image from "next/image";
 import styled from "styled-components";
 
 const CustomImage = styled(Image)`
+  width: ${(props) => props.width + "px"};
+  height: ${(props) => props.height + "px"};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   align-self: ${(props) => props.align};
