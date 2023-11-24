@@ -43,9 +43,10 @@ const DotPulseRight = styled(DotPulse)`
   animation-delay: 0.75s;
 `;
 
-export const Loader = ({ color }) => (
+export const Loader = ({ color, flex }) => (
   <FlexBox
     gap="10px"
+    flex={flex}
     width="100%"
     height="100%"
     align="center"
