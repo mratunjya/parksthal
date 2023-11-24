@@ -1,22 +1,101 @@
+import axios from "axios";
 import chroma from "chroma-js";
-import { useState } from "react";
+import Select from "react-select";
+import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
+import { useEffect, useMemo, useState } from "react";
 
+import {
+  WHITE,
+  PRIMARY_100,
+  PRIMARY_500,
+  TERTIARY_500,
+  SECONDARY_100,
+  SECONDARY_500,
+  FACEBOOK_BLUE,
+} from "@colors";
 import { Loader } from "@loader";
-import { H3 } from "@common/Text";
+import { H3, H4 } from "@common/Text";
 import checkSvg from "./assets/check.svg";
 import { FlexBox } from "@common/FlexBox";
-import { LargeButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
-import { IsAuthenticated, SessionStatus } from "@Auth";
-import { FACEBOOK_BLUE, SECONDARY_100, SECONDARY_500, WHITE } from "@colors";
+import { LargeButton, SmallButton } from "@common/Button";
+import { IsAuthenticated, SessionStatus, SessionUser } from "@Auth";
 
 const AuthLogInBtns = () => {
+  const user = SessionUser();
+  const router = useRouter();
   const sessionStatus = SessionStatus();
   const isAuthenticated = IsAuthenticated();
   const [isLoading, setIsLoading] = useState(false);
+  const [isSaveClicked, setSaveClicked] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChange = (selectedOption) => {
+    // Handle the selected option as needed
+    setSelectedOption(selectedOption);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setSaveClicked(true);
+
+    const payload = { email: user.email, role: selectedOption.value };
+
+    axios
+      .put("http://localhost:4000/api/users/update", payload)
+      .catch((err) => {
+        console.log(err);
+        setSaveClicked(false);
+      })
+      .finally(() => {
+        router.push("dashboard");
+      });
+  };
+
+  const selectStyles = {
+    control: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+      boxShadow: PRIMARY_500,
+      border: `2px solid ${PRIMARY_500}`,
+      ":hover": {
+        ...styles[":hover"],
+        borderColor: PRIMARY_500,
+      },
+    }),
+    menu: (styles) => ({
+      ...styles,
+      overflow: "hidden",
+      borderColor: "red",
+      borderRadius: "10px",
+      boxShadow: `0 0 8px 1px ${TERTIARY_500}`,
+    }),
+    option: (styles, { isSelected }) => ({
+      ...styles,
+      cursor: "pointer",
+      color: isSelected ? WHITE : SECONDARY_500,
+      backgroundColor: isSelected ? PRIMARY_500 : null,
+      ":active": {
+        ...styles[":active"],
+        color: WHITE,
+        backgroundColor: PRIMARY_100,
+      },
+    }),
+  };
+
+  const selectOptions = useMemo(
+    () => [
+      { value: "consumer", label: "Consumer" },
+      { value: "attendant", label: "Attendant" },
+      { value: "owner", label: "Owner" },
+    ],
+    []
+  );
 
   const googleLogInHandler = () => {
     signIn("google");
@@ -28,9 +107,13 @@ const AuthLogInBtns = () => {
     setIsLoading(true);
   };
 
+  useEffect(() => {
+    handleChange(selectOptions[0]);
+  }, [selectOptions]);
+
   return (
     <FlexBox
-      gap="1.5rem"
+      gap="2.5rem"
       direction="column"
       widthMobile="100%"
       minWidth="31.25rem"
@@ -55,14 +138,40 @@ const AuthLogInBtns = () => {
         </>
       ) : isAuthenticated ? (
         <>
-          <H3>Already Authenticated !!!</H3>
-          <CommonImage
-            width={100}
-            alt={"check"}
-            src={checkSvg}
-            align="center"
-            margin={"1.25rem 0 0"}
-          ></CommonImage>
+          <H3>Authenticated Successfully !</H3>
+          {user.role ? (
+            <CommonImage
+              width={100}
+              alt={"check"}
+              src={checkSvg}
+              align="center"
+              margin={"1.25rem 0 0"}
+            />
+          ) : (
+            <FlexBox direction="column" gap="1.5rem">
+              <H4>Select your role for using our web app</H4>
+              <form onSubmit={handleSubmit}>
+                <FlexBox direction="column" width="50%" gap="0.75rem">
+                  <FlexBox display="block">
+                    <Select
+                      onChange={handleChange}
+                      autoFocus
+                      isClearable={false}
+                      isSearchable={false}
+                      styles={selectStyles}
+                      options={selectOptions}
+                      classNamePrefix="select"
+                      placeholder="Select a role"
+                      defaultValue={selectOptions[0]}
+                    />
+                  </FlexBox>
+                  <SmallButton width="fit-content" disabled={isSaveClicked}>
+                    {isSaveClicked ? <Loader color={WHITE} /> : "Save"}
+                  </SmallButton>
+                </FlexBox>
+              </form>
+            </FlexBox>
+          )}
         </>
       ) : (
         <>
