@@ -12,5 +12,5 @@ export const SessionStatus = () => {
 
 export const SessionUser = () => {
   const { data } = useSession();
-  return data?.user;
+  return data?.session?.user;
 };
