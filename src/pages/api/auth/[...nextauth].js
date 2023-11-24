@@ -16,10 +16,30 @@ export const authOptions = {
   ],
   secret: process.env.JWT_SECRET,
   // Add Events for custom behavior
+  callbacks: {
+    async session(session) {
+      const api = `${process.env.API_ENDPOINT}/users/get_user_role`;
+      const { email } = session.session.user;
+      const payload = { email: email };
+      await fetch(api, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          session.session.user.role = data.role;
+        });
+
+      return session;
+    },
+  },
   events: {
     async signIn(response) {
       const { email } = response.user;
-      const api = `${process.env.API_ENDPOINT}users`;
+      const api = `${process.env.API_ENDPOINT}/users`;
 
       if (email) {
         await fetch(api, {
