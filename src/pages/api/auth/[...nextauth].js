@@ -71,6 +71,25 @@ export const authOptions = {
 
           const attendant_data = await attendant_response.json();
           session.session.user.phone = attendant_data.phone;
+        } else if (data.role === "owner") {
+          const owner_api = `${process.env.API_ENDPOINT}/owners/owner_details`;
+
+          console.log({ owner_api, payload });
+
+          const owner_response = await fetch(owner_api, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!owner_response.ok) {
+            throw new Error("Failed to fetch owner details");
+          }
+
+          const owner_data = await owner_response.json();
+          session.session.user.phone = owner_data.phone;
         }
       } catch (error) {
         console.error("Error during session callback:", error);

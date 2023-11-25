@@ -7,3 +7,6 @@ export const POST_IS_ANY_MISSING_DETAILS_CONSUMER = `${baseUrl}/consumers/is_any
 
 export const PUT_IS_ANY_MISSING_DETAILS_ATTENDANT = `${baseUrl}/attendants/update`;
 export const POST_IS_ANY_MISSING_DETAILS_ATTENDANT = `${baseUrl}/attendants/is_any_missing_details`;
+
+export const PUT_IS_ANY_MISSING_DETAILS_OWNER = `${baseUrl}/owners/update`;
+export const POST_IS_ANY_MISSING_DETAILS_OWNER = `${baseUrl}/owners/is_any_missing_details`;
