@@ -2,9 +2,9 @@ import axios from "axios";
 import chroma from "chroma-js";
 import Select from "react-select";
 import { useRouter } from "next/router";
-import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
+import { getSession, signIn } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 
 import {
@@ -50,7 +50,7 @@ const AuthLogInBtns = () => {
 
     axios
       .put("http://localhost:4000/api/users/update", payload)
-      .then((res) => {
+      .then((response) => {
         router.push("dashboard");
       })
       .catch((err) => {

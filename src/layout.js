@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import isPropValid from "@emotion/is-prop-valid";
 import ProgressBar from "react-scroll-progress-bar";
 import { StyleSheetManager } from "styled-components";
@@ -9,14 +9,20 @@ import NavBar from "@common/NavBar";
 import { Loader } from "@common/Loader";
 import { SECONDARY_500 } from "@colors";
 import { IsAuthenticated, SessionStatus, SessionUser } from "@Auth";
+import { getSession } from "next-auth/react";
 
 export default function Layout({ title, description, children, privateRoute }) {
   const router = useRouter();
   const user = SessionUser();
   const status = SessionStatus();
   const isAuthenticated = IsAuthenticated();
+  const [role, setRole] = useState("loading");
 
-  const role = user?.role;
+  useEffect(() => {
+    getSession().then((session) => {
+      setRole(session?.session?.user?.role);
+    });
+  }, []);
 
   useEffect(() => {
     if (privateRoute) {
