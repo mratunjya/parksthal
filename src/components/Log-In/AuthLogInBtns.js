@@ -2,9 +2,9 @@ import axios from "axios";
 import chroma from "chroma-js";
 import Select from "react-select";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
-import { getSession, signIn } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 
 import {
@@ -18,8 +18,9 @@ import {
   ERROR_RED,
 } from "@colors";
 import { Loader } from "@loader";
-import { H3, H4, P } from "@common/Text";
+import { PUT_UPDATE_USER } from "@apis";
 import { toast } from "react-toastify";
+import { H3, H4, P } from "@common/Text";
 import checkSvg from "./assets/check.svg";
 import { FlexBox } from "@common/FlexBox";
 import CommonImage from "@common/CommonImage";
@@ -49,7 +50,7 @@ const AuthLogInBtns = () => {
     const payload = { email: user.email, role: selectedOption.value };
 
     axios
-      .put("http://localhost:4000/api/users/update", payload)
+      .put(PUT_UPDATE_USER, payload)
       .then((response) => {
         router.push("dashboard");
       })

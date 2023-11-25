@@ -36,6 +36,25 @@ export const authOptions = {
 
         const data = await response.json();
         session.session.user.role = data.role;
+
+        if (data.role === "consumer") {
+          const consumer_api = `${process.env.API_ENDPOINT}/consumers/consumer_details`;
+
+          const consumer_response = await fetch(consumer_api, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!consumer_response.ok) {
+            throw new Error("Failed to fetch consumer details");
+          }
+
+          const consumer_data = await consumer_response.json();
+          session.session.user.phone = consumer_data.phone;
+        }
       } catch (error) {
         console.error("Error during session callback:", error);
         // Handle the error as per your application's requirements

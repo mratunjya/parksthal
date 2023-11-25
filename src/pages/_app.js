@@ -58,7 +58,7 @@ export default function App({
           rtl={false}
           pauseOnHover
           closeOnClick
-          theme="light"
+          theme="colored"
           autoClose={5000}
           newestOnTop={false}
           position="top-right"

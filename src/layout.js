@@ -26,9 +26,7 @@ export default function Layout({ title, description, children, privateRoute }) {
 
   useEffect(() => {
     if (privateRoute) {
-      status !== "loading" &&
-        (!isAuthenticated || !role) &&
-        router.push("log-in");
+      status !== "loading" && (!isAuthenticated || !role) && router.push("/");
     }
   }, [isAuthenticated, privateRoute, router, status, role]);
 

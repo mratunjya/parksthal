@@ -111,6 +111,44 @@ li {
   font-size: 1rem;
 }
 
+input {
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  cursor: pointer;
+  max-width: 100%;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+}
+
+input:disabled {
+  cursor: not-allowed;
+  border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+}
+
+input:focus {
+  border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+}
+
+input::placeholder,
+input::-ms-input-placeholder {
+  opacity: 0.5;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .no-overflow {
   overflow: hidden;
 }
@@ -128,6 +166,15 @@ li {
 
   h2 {
     font-size: 1.35rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  input {
+    max-width: 100%;
+    padding: 0.5rem;
   }
 
   .no-mobile {

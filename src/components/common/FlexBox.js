@@ -33,6 +33,9 @@ export const FlexBox = styled.div`
   /* Border properties */
   border: ${(props) => props.border};
   border-radius: ${(props) => props.radius};
+  border-right: ${(props) => props.borderRight};
+  border-left-width: ${(props) => props.borderLeftWidth};
+  border-right-width: ${(props) => props.borderRightWidth};
 
   /* Background properties */
   background-size: ${(props) => props.bgSize};
@@ -111,6 +114,9 @@ export const FlexBox = styled.div`
     /* Border properties */
     border: ${(props) => props.borderMobile};
     border-radius: ${(props) => props.radiusMobile};
+    border-right: ${(props) => props.borderRightMobile};
+    border-left-width: ${(props) => props.borderLeftWidthMobile};
+    border-right-width: ${(props) => props.borderRightWidthMobile};
 
     /* Background properties */
     background-size: ${(props) => props.bgSizeMobile};

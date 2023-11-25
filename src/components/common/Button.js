@@ -46,15 +46,30 @@ Button.defaultProps = {
   position: "relative",
 };
 
+export const SubmitBtn = styled(Button).attrs({
+  as: "input",
+  type: "submit",
+})``;
+
 export const SmallButton = styled(Button)`
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
 `;
 
+export const SmallSubmitButton = styled(SmallButton).attrs({
+  as: "input",
+  type: "submit",
+})``;
+
 export const MediumButton = styled(Button)`
   font-size: 1.2rem;
   padding: 1.2rem 2.4rem;
 `;
+
+export const MediumSubmitButton = styled(MediumButton).attrs({
+  as: "input",
+  type: "submit",
+})``;
 
 export const LargeButton = styled(Button)`
   font-size: 1.5rem;
@@ -64,5 +79,10 @@ export const LargeButton = styled(Button)`
     font-size: 1rem;
   }
 `;
+
+export const LargeSubmitButton = styled(LargeButton).attrs({
+  as: "input",
+  type: "submit",
+})``;
 
 export default Button;
