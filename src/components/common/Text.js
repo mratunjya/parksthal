@@ -6,19 +6,25 @@ export const P = styled.p`
   color: ${(props) => props.color};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
+  text-align: ${(props) => props.align};
   font-size: ${(props) => props.fontSize};
+  font-style: ${(props) => props.fontStyle};
   font-weight: ${(props) => props.fontWeight};
   line-height: ${(props) => props.lineHeight};
   white-space: ${(props) => props.whiteSpace};
+  text-decoration: ${(props) => props.decoration};
 
   @media (max-width: 768px) {
     color: ${(props) => props.colorMobile};
     margin: ${(props) => props.marginMobile};
     padding: ${(props) => props.paddingMobile};
+    text-align: ${(props) => props.alignMobile};
     font-size: ${(props) => props.fontSizeMobile};
+    font-style: ${(props) => props.fontStyleMobile};
     font-weight: ${(props) => props.fontWeightMobile};
     line-height: ${(props) => props.lineHeightMobile};
     white-space: ${(props) => props.whiteSpaceMobile};
+    text-decoration: ${(props) => props.decorationMobile};
   }
 `;
 

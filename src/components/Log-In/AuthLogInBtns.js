@@ -15,9 +15,11 @@ import {
   SECONDARY_100,
   SECONDARY_500,
   FACEBOOK_BLUE,
+  ERROR_RED,
 } from "@colors";
 import { Loader } from "@loader";
-import { H3, H4 } from "@common/Text";
+import { H3, H4, P } from "@common/Text";
+import { toast } from "react-toastify";
 import checkSvg from "./assets/check.svg";
 import { FlexBox } from "@common/FlexBox";
 import CommonImage from "@common/CommonImage";
@@ -48,12 +50,13 @@ const AuthLogInBtns = () => {
 
     axios
       .put("http://localhost:4000/api/users/update", payload)
+      .then((res) => {
+        router.push("dashboard");
+      })
       .catch((err) => {
         console.log(err);
         setSaveClicked(false);
-      })
-      .finally(() => {
-        router.push("dashboard");
+        toast.error(err.message);
       });
   };
 
@@ -62,7 +65,7 @@ const AuthLogInBtns = () => {
       ...styles,
       cursor: "pointer",
       boxShadow: PRIMARY_500,
-      border: `2px solid ${PRIMARY_500}`,
+      border: `2px solid ${SECONDARY_500}`,
       ":hover": {
         ...styles[":hover"],
         borderColor: PRIMARY_500,
@@ -70,6 +73,7 @@ const AuthLogInBtns = () => {
     }),
     menu: (styles) => ({
       ...styles,
+      position: "unset",
       overflow: "hidden",
       borderColor: "red",
       borderRadius: "10px",
@@ -151,7 +155,12 @@ const AuthLogInBtns = () => {
             <FlexBox direction="column" gap="1.5rem">
               <H4>Select your role for using our web app</H4>
               <form onSubmit={handleSubmit}>
-                <FlexBox direction="column" width="50%" gap="0.75rem">
+                <FlexBox
+                  width="50%"
+                  gap="0.75rem"
+                  direction="column"
+                  widthMobile="100%"
+                >
                   <FlexBox display="block">
                     <Select
                       onChange={handleChange}
@@ -170,6 +179,14 @@ const AuthLogInBtns = () => {
                   </SmallButton>
                 </FlexBox>
               </form>
+              <P
+                align="right"
+                fontSize="1rem"
+                fontStyle="italic"
+                color={ERROR_RED}
+              >
+                * Role Once added can&apos;t be changed later
+              </P>
             </FlexBox>
           )}
         </>

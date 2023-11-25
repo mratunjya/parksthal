@@ -1,6 +1,6 @@
+import Layout from "@layout";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import Layout from "@layout";
 
 const ParkSthal = () => {
   const router = useRouter();

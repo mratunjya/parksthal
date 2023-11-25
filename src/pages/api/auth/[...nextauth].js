@@ -18,37 +18,54 @@ export const authOptions = {
   // Add Events for custom behavior
   callbacks: {
     async session(session) {
-      const api = `${process.env.API_ENDPOINT}/users/get_user_role`;
-      const { email } = session.session.user;
-      const payload = { email: email };
-      await fetch(api, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          session.session.user.role = data.role;
+      try {
+        const api = `${process.env.API_ENDPOINT}/users/get_user_role`;
+        const { email } = session.session.user;
+        const payload = { email: email };
+        const response = await fetch(api, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
         });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch user role");
+        }
+
+        const data = await response.json();
+        session.session.user.role = data.role;
+      } catch (error) {
+        console.error("Error during session callback:", error);
+        // Handle the error as per your application's requirements
+      }
 
       return session;
     },
   },
   events: {
     async signIn(response) {
-      const { email } = response.user;
-      const api = `${process.env.API_ENDPOINT}/users`;
+      try {
+        const { email } = response.user;
+        const api = `${process.env.API_ENDPOINT}/users`;
 
-      if (email) {
-        await fetch(api, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        });
+        if (email) {
+          const signInResponse = await fetch(api, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+          });
+
+          if (!signInResponse.ok) {
+            throw new Error("Failed to sign in user");
+          }
+        }
+      } catch (error) {
+        console.error("Error during signIn event:", error);
+        // Handle the error as per your application's requirements
       }
     },
   },

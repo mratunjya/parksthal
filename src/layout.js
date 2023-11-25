@@ -8,18 +8,23 @@ import { StyleSheetManager } from "styled-components";
 import NavBar from "@common/NavBar";
 import { Loader } from "@common/Loader";
 import { SECONDARY_500 } from "@colors";
-import { IsAuthenticated, SessionStatus } from "@Auth";
+import { IsAuthenticated, SessionStatus, SessionUser } from "@Auth";
 
 export default function Layout({ title, description, children, privateRoute }) {
   const router = useRouter();
+  const user = SessionUser();
   const status = SessionStatus();
   const isAuthenticated = IsAuthenticated();
 
+  const role = user?.role;
+
   useEffect(() => {
     if (privateRoute) {
-      status !== "loading" && !isAuthenticated && router.push("log-in");
+      status !== "loading" &&
+        (!isAuthenticated || !role) &&
+        router.push("log-in");
     }
-  }, [isAuthenticated, privateRoute, router, status]);
+  }, [isAuthenticated, privateRoute, router, status, role]);
 
   return (
     <>
@@ -42,7 +47,7 @@ export default function Layout({ title, description, children, privateRoute }) {
           status === "loading" ? (
             <Loader flex="1" />
           ) : (
-            isAuthenticated && <main>{children}</main>
+            isAuthenticated && !!role && <main>{children}</main>
           )
         ) : (
           <main>{children}</main>
