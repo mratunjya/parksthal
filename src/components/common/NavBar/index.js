@@ -127,10 +127,10 @@ const CommonNavBar = () => {
         top="0"
         left="0"
         align="center"
+        bgColor={WHITE}
         justify="center"
         position="sticky"
-        bgColorMobile={WHITE}
-        bgColor={chroma(WHITE).alpha(0.75).css()}
+        width="env(titlebar-area-width)"
       >
         <NavBar
           gap="1rem"
@@ -151,6 +151,22 @@ const CommonNavBar = () => {
           >
             <FlexBox align="center" justify="center" gap="0.75rem">
               <RenderAllNavLinks />
+              <CommonLink href="/dashboard">
+                <NavCta
+                  onClick={closeNavBar}
+                  toUpper
+                  align="center"
+                  radius="0.5rem"
+                  justify="center"
+                  padding="0.5rem"
+                  bgColor="transparent"
+                  border="2px solid transparent"
+                >
+                  <H5 whiteSpace="nowrap" color={SECONDARY_400}>
+                    Dashboard
+                  </H5>
+                </NavCta>
+              </CommonLink>
             </FlexBox>
             <FlexBox gap="1.5rem" align="center" justify="center">
               <RenderWhatsAppBtn />

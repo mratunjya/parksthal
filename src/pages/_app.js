@@ -16,7 +16,24 @@ export default function App({
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    const handleServiceWorkerRegistration = async () => {
+      if ("serviceWorker" in navigator) {
+        try {
+          const registration = await navigator.serviceWorker.register(
+            "/sw.js",
+            {
+              scope: "/",
+            }
+          );
+          console.log("Service Worker registration successful:", registration);
+        } catch (error) {
+          console.error("Service Worker registration failed:", error);
+        }
+      }
+    };
+
     setIsLoaded(true);
+    handleServiceWorkerRegistration();
   }, []);
 
   return isLoaded ? (

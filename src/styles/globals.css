@@ -2,6 +2,9 @@
 
 :root {
   font-size: 16px;
+  --theme-color: #ffffff;
+  --edited-demo-height: 60%;
+  --toolbar-height: calc(40px + 2 * var(--padding));
 }
 
 *,

@@ -3,17 +3,11 @@ import styled, { keyframes } from "styled-components";
 
 import { H5 } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
-import {
-  WHITE,
-  BLACK,
-  TERTIARY_200,
-  SECONDARY_100,
-  SECONDARY_400,
-} from "@colors";
+import { WHITE, BLACK, TERTIARY_200, SECONDARY_400 } from "@colors";
 
 export const NavBarWrapper = styled(FlexBox).attrs({ as: "nav" })`
-  box-shadow: 0rem 0rem 0.5rem ${SECONDARY_100};
-  backdrop-filter: saturate(180%) blur(1.25rem);
+  -webkit-app-region: no-drag;
+  height: var(--toolbar-height);
 
   & * {
     user-select: none;

@@ -3,8 +3,8 @@
   "start_url": "/",
   "name": "ParkSthal",
   "display_override": [
-    "fullscreen",
-    "minimal-ui"
+    "window-controls-overlay",
+    "standalone"
   ],
   "display": "standalone",
   "theme_color": "#ffffff",
@@ -20,7 +20,6 @@
     {
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable",
       "src": "/maskable_icon.png"
     },
     {
@@ -37,6 +36,19 @@
       "sizes": "512x512",
       "type": "image/png",
       "src": "/icon-512x512.png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "1080x2275",
+      "type": "image/png"
     }
   ]
 }
