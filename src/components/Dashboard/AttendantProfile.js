@@ -24,6 +24,17 @@ const AttendantProfile = () => {
   const { register, handleSubmit } = useForm();
 
   const submitHandler = (data) => {
+    if (data.phone[0] === "0") {
+      toast.warning("0(zero) cannot be the first digit");
+      return;
+    } else if (data.phone.length > 10) {
+      toast.warning("Mobile phone can have maximum 10 digits");
+      return;
+    } else if (data.phone.length < 10) {
+      toast.warning("Mobile phone must have minimum 10 digits");
+      return;
+    }
+
     const payload = { email: user.email, phone: data.phone };
     setSaveLoading(true);
     axios
@@ -92,6 +103,19 @@ const AttendantProfile = () => {
                         type="text"
                         placeholder={user?.email}
                         value={user?.email}
+                        disabled={true}
+                      />
+                    </FlexBox>
+                  </FlexBox>
+                </label>
+                <label>
+                  <FlexBox align="center" justify="space-between" gap="1rem">
+                    <H3>Role</H3>
+                    <FlexBox justify="center" align="center" gap="0.75rem">
+                      <input
+                        type="text"
+                        placeholder={user?.role}
+                        value={user?.role}
                         disabled={true}
                       />
                     </FlexBox>
