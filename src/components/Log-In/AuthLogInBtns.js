@@ -52,7 +52,7 @@ const AuthLogInBtns = () => {
     axios
       .put(PUT_UPDATE_USER, payload)
       .then((response) => {
-        router.push("dashboard");
+        router.push("dashboard/profile");
       })
       .catch((err) => {
         console.log(err);

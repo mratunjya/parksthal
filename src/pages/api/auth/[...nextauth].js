@@ -54,6 +54,23 @@ export const authOptions = {
 
           const consumer_data = await consumer_response.json();
           session.session.user.phone = consumer_data.phone;
+        } else if (data.role === "attendant") {
+          const attendant_api = `${process.env.API_ENDPOINT}/attendants/attendant_details`;
+
+          const attendant_response = await fetch(attendant_api, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!attendant_response.ok) {
+            throw new Error("Failed to fetch attendant details");
+          }
+
+          const attendant_data = await attendant_response.json();
+          session.session.user.phone = attendant_data.phone;
         }
       } catch (error) {
         console.error("Error during session callback:", error);
