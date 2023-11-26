@@ -1,3 +1,4 @@
+import randomstring from "randomstring";
 import chroma from "chroma-js";
 import { BsWhatsapp } from "react-icons/bs";
 import { useEffect, useState } from "react";
@@ -67,7 +68,7 @@ const CommonNavBar = () => {
 
   const RenderAllNavLinks = () =>
     navLinksData.map((navLink, index) => (
-      <CommonLink href={navLink.href} key={index}>
+      <CommonLink href={navLink.href} key={randomstring.generate()}>
         <NavCta
           onClick={closeNavBar}
           toUpper

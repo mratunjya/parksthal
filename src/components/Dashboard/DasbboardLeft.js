@@ -1,3 +1,5 @@
+import randomstring from "randomstring";
+
 import { H3 } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
 import CommonLink from "@common/CommonLink";
@@ -17,7 +19,7 @@ const DashboardLeft = ({ user, routerQuery }) => {
       <FlexBox gap="1rem" direction="column">
         {DashboardMenu[`${user?.role}`]?.map((option) => (
           <CommonLink
-            key={Math.random()}
+            key={randomstring}
             href={`${routerQuery ? "" : "dashboard/"}${option
               .toLowerCase()
               .replaceAll(" ", "-")}`}

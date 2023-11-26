@@ -24,6 +24,7 @@
     "next-sitemap": "^4.2.2",
     "nextjs-progressbar": "^0.0.16",
     "nookies": "^2.5.2",
+    "randomstring": "^1.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",

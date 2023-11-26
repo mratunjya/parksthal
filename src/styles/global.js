@@ -20,6 +20,10 @@ const font = REM({
 });
 
 const GlobalStyles = createGlobalStyle`
+  :root {
+    --swiper-navigation-color: ${PRIMARY_500} !important;
+  }
+
   /* Global CSS rules */
   html,
   body {
@@ -39,9 +43,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   input:disabled {
-    background-color: ${TERTIARY_300};
     border: 2px solid;
     border-color: ${TERTIARY_900};
+    background-color: ${TERTIARY_300};
   }
 
   input:focus {

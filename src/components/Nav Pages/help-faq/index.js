@@ -45,18 +45,18 @@ const HelpAndFAQ = () => {
         bgColor={PRIMARY_100}
       >
         <Wrapper
-          width="86.67%"
-          maxWidth="75rem"
-          margin="0 auto"
-          padding="2rem 2rem 5rem"
           gap="1.5rem"
-          wrapMobile="wrap"
-          justifyMobile="flex-start"
-          heightMobile="unset"
-          paddingMobile="1.5rem 1.5rem 2.5rem"
-          direction="column"
+          width="86.67%"
+          margin="0 auto"
           bgColor={WHITE}
+          maxWidth="75rem"
+          wrapMobile="wrap"
           widthMobile="96%"
+          direction="column"
+          heightMobile="unset"
+          padding="2rem 2rem 5rem"
+          justifyMobile="flex-start"
+          paddingMobile="1.5rem 1.5rem 2.5rem"
         >
           <H1>Help & FAQ</H1>
           <FlexBox direction="column" gap="0.75rem">
@@ -75,7 +75,7 @@ const HelpAndFAQ = () => {
             </P>
             <ol>
               {howDoesItWork.map((step, index) => {
-                return <Li key={index}>{step}</Li>;
+                return <Li key={index + Math.random()}>{step}</Li>;
               })}
             </ol>
           </FlexBox>

@@ -10,3 +10,5 @@ export const POST_IS_ANY_MISSING_DETAILS_ATTENDANT = `${baseUrl}/attendants/is_a
 
 export const PUT_IS_ANY_MISSING_DETAILS_OWNER = `${baseUrl}/owners/update`;
 export const POST_IS_ANY_MISSING_DETAILS_OWNER = `${baseUrl}/owners/is_any_missing_details`;
+
+export const POST_ADD_PARKING_LOT = `${baseUrl}/parking_lots`;

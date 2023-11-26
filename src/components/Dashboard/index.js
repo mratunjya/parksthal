@@ -83,7 +83,13 @@ const DashboardAllRoutes = () => {
           borderMobile={`1.5rem solid ${WHITE}`}
           height={`calc(100vh - ${navBarHeight}px - 2rem)`}
         >
-          <FlexBox flex="1" gap="2px" radius="1rem" maxWidth="75rem">
+          <FlexBox
+            flex="1"
+            gap="2px"
+            wrap="wrap"
+            radius="1rem"
+            maxWidth="75rem"
+          >
             <DashboardLeft user={user} routerQuery={routerQuery} />
             <FlexBox
               flex="7"
@@ -94,7 +100,7 @@ const DashboardAllRoutes = () => {
               {routerQuery === "profile" ? (
                 <Profile user={user} />
               ) : (
-                <DashboardRight routerQuery={routerQuery} />
+                <DashboardRight routerQuery={routerQuery} user={user} />
               )}
             </FlexBox>
           </FlexBox>
