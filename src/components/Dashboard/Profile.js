@@ -42,6 +42,9 @@ const Profile = ({ user }) => {
     } else if (data.phone.length > 10) {
       toast.warning("Mobile phone can have maximum 10 digits");
       return;
+    } else if (data.phone.length === 0) {
+      toast.warning("Phone number is Required");
+      return;
     } else if (data.phone.length < 10) {
       toast.warning("Mobile phone must have minimum 10 digits");
       return;
@@ -123,9 +126,7 @@ const Profile = ({ user }) => {
                   <H4 className="no-mobile">+91</H4>
                   <input
                     type="number"
-                    {...register("phone", {
-                      required: true,
-                    })}
+                    {...register("phone")}
                     defaultValue={user?.phone}
                     placeholder="Enter phone number here"
                   />

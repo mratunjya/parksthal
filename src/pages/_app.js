@@ -5,8 +5,8 @@ import GlobalStyles from "@GlobalStyles";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import NextNProgress from "nextjs-progressbar";
+import { ToastContainer } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
-import { ToastContainer, toast } from "react-toastify";
 
 import { PRIMARY_500 } from "@colors";
 import PageLoader from "@common/PageLoader";
@@ -56,11 +56,11 @@ export default function App({
         <ToastContainer
           draggable
           rtl={false}
+          newestOnTop
           pauseOnHover
           closeOnClick
           theme="colored"
           autoClose={5000}
-          newestOnTop={false}
           position="top-right"
           hideProgressBar={false}
           pauseOnFocusLoss={false}
