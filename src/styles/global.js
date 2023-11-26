@@ -64,7 +64,7 @@ const GlobalStyles = createGlobalStyle`
     ${font.style};
   }
 
-  .Toastify__toast-theme--colored.Toastify__toast--success {
+  .Toastify__toast--success {
     background-color: ${PRIMARY_500};
   }
 `;

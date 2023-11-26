@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Layout from "@layout";
 import {
@@ -17,16 +17,22 @@ import DashboardLeft from "@components/Dashboard/DasbboardLeft";
 
 const DashboardAllRoutes = () => {
   const router = useRouter();
+  const dashboardRightRef = useRef();
   const [user, setUser] = useState({});
   const [routerQuery, setRouterQuery] = useState();
   const [navBarHeight, setNavBarHeight] = useState(0);
   const [missingDetailsApi, setMissingDetailsApi] = useState("");
+  const [dashboardRightHeight, setDashboardRightHeight] = useState(null);
 
   useEffect(() => {
     getSession().then((session) => {
       setUser(session?.session?.user);
     });
   }, []);
+
+  useEffect(() => {
+    setDashboardRightHeight(dashboardRightRef?.current?.offsetHeight);
+  }, [dashboardRightRef?.current?.offsetHeight]);
 
   useEffect(() => {
     setNavBarHeight(document.querySelector("nav").offsetHeight);
@@ -89,6 +95,7 @@ const DashboardAllRoutes = () => {
             wrap="wrap"
             radius="1rem"
             maxWidth="75rem"
+            ref={dashboardRightRef}
           >
             <DashboardLeft user={user} routerQuery={routerQuery} />
             <FlexBox
@@ -100,7 +107,11 @@ const DashboardAllRoutes = () => {
               {routerQuery === "profile" ? (
                 <Profile user={user} />
               ) : (
-                <DashboardRight routerQuery={routerQuery} user={user} />
+                <DashboardRight
+                  user={user}
+                  routerQuery={routerQuery}
+                  dashboardRightHeight={dashboardRightHeight}
+                />
               )}
             </FlexBox>
           </FlexBox>

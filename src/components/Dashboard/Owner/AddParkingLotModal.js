@@ -17,36 +17,7 @@ import SearchFilterDropdown from "@common/SearchFilterDropdown";
 import { CitiesByState, States } from "@meta/Dashboard/CountryStateCity";
 import { WHITE, PRIMARY_500, SECONDARY_100, SECONDARY_500 } from "@colors";
 
-const fadeIn = keyframes`
-  from {
-    width: 206px;
-    min-height: 200px;
-  }
-  to {
-    width: 100%;
-    min-height: 500px;
-  }
-`;
-
-const displayTiming = keyframes`
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
 const Wrapper = styled(FlexBox)`
-  animation: ${fadeIn} 0.25s ease-in-out;
-
-  > * {
-    animation: ${displayTiming} 0.5s ease-in-out;
-  }
-
   .swiper {
     width: 100%;
   }
@@ -61,7 +32,7 @@ const CloseButton = styled(FlexBox)`
   }
 `;
 
-const AddParkingLotModal = ({ user, setAddModal }) => {
+const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => {
   const [name, setName] = useState(null);
   const [cities, setCities] = useState(null);
   const [address, setAddress] = useState(null);
@@ -93,7 +64,7 @@ const AddParkingLotModal = ({ user, setAddModal }) => {
     axios
       .post(POST_ADD_PARKING_LOT, payload)
       .then((response) => {
-        setAddModal(false);
+        setOpenAddModal(false);
         toast.success(response.data.success);
       })
       .catch((error) => {
@@ -115,18 +86,19 @@ const AddParkingLotModal = ({ user, setAddModal }) => {
   return (
     <Wrapper
       flex="1"
-      width="100%"
+      margin="5px"
       radius="1rem"
       cursor="grab"
       padding="1rem"
       bgColor={WHITE}
-      minHeight="500px"
       position="absolute"
-      height="fit-content"
+      width="calc(100% - 10px)"
       shadow={`0 0 4px 1px ${SECONDARY_100}`}
+      height={dashboardRightHeight - 10 + "px"}
+      minHeight={dashboardRightHeight - 10 + "px"}
     >
       <CloseButton
-        onClick={() => setAddModal(false)}
+        onClick={() => setOpenAddModal(false)}
         zIndex="2"
         right="1rem"
         cursor="pointer"

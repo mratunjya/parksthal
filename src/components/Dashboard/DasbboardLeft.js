@@ -19,7 +19,7 @@ const DashboardLeft = ({ user, routerQuery }) => {
       <FlexBox gap="1rem" direction="column">
         {DashboardMenu[`${user?.role}`]?.map((option) => (
           <CommonLink
-            key={randomstring}
+            key={randomstring.generate()}
             href={`${routerQuery ? "" : "dashboard/"}${option
               .toLowerCase()
               .replaceAll(" ", "-")}`}
