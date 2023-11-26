@@ -1,4 +1,5 @@
 import axios from "axios";
+import styled from "styled-components";
 import { toast } from "react-toastify";
 import randomstring from "randomstring";
 import { useCallback, useEffect, useState } from "react";
@@ -7,18 +8,25 @@ import { H4, P } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
 import CommonImage from "@common/CommonImage";
 import AddParkingLotModal from "./AddParkingLotModal";
-import { DELETE_PARKING_LOT, POST_PARKING_LOTS } from "@apis";
+import { POST_DELETE_PARKING_LOT, POST_PARKING_LOTS } from "@apis";
 import { ERROR_RED, SECONDARY_100, WHATSAPP_GREEN, WHITE } from "@colors";
+
+const EllipsisP = styled(P)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 const ManageParkingLot = ({ user, dashboardRightHeight }) => {
   const [parkingLots, setParkingLots] = useState(null);
   const [openAddModal, setOpenAddModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [editParkingLot, setEditParkingLot] = useState(null);
 
   const deleteParkingLot = (parking_lot_id) => {
     const payload = { parking_lot_id: parking_lot_id };
 
     axios
-      .post(DELETE_PARKING_LOT, payload)
+      .post(POST_DELETE_PARKING_LOT, payload)
       .then((response) => {
         fetchParkingLots(); // Now fetchParkingLots is accessible
         toast.success("Deleted Successfully");
@@ -48,13 +56,19 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
     fetchParkingLots(); // Initial fetch
   }, [fetchParkingLots, user]);
 
-  const handleOpenModal = () => {
+  const handleOpenAddModal = () => {
     setOpenAddModal(true);
   };
 
+  const handleOpenEditModal = (parkingLot) => {
+    setOpenEditModal(true);
+    console.log(parkingLot);
+    setEditParkingLot(parkingLot);
+  };
+
   useEffect(() => {
-    !openAddModal && fetchParkingLots();
-  }, [fetchParkingLots, openAddModal]);
+    !openAddModal && !openEditModal && fetchParkingLots();
+  }, [fetchParkingLots, openAddModal, openEditModal]);
 
   return (
     <FlexBox
@@ -64,15 +78,18 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
       position="relative"
       height={dashboardRightHeight + "px"}
     >
-      {openAddModal && (
+      {(openAddModal || openEditModal) && (
         <AddParkingLotModal
           user={user}
+          editModal={openEditModal}
+          parkingLot={editParkingLot}
           setOpenAddModal={setOpenAddModal}
+          setOpenEditModal={setOpenEditModal}
           dashboardRightHeight={dashboardRightHeight}
         />
       )}
       <FlexBox
-        onClick={handleOpenModal}
+        onClick={handleOpenAddModal}
         gap="2rem"
         width="100%"
         radius="1rem"
@@ -109,19 +126,19 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
         >
           <FlexBox gap="1rem">
             <H4>Name:</H4>
-            <P>{parkingLot.name}</P>
+            <EllipsisP>{parkingLot.name}</EllipsisP>
           </FlexBox>
           <FlexBox gap="1rem">
             <H4>State:</H4>
-            <P>{parkingLot.state}</P>
+            <EllipsisP>{parkingLot.state}</EllipsisP>
           </FlexBox>
           <FlexBox gap="1rem">
             <H4>City:</H4>
-            <P>{parkingLot.city}</P>
+            <EllipsisP>{parkingLot.city}</EllipsisP>
           </FlexBox>
           <FlexBox gap="1rem">
             <H4>Address:</H4>
-            <P>{parkingLot.address}</P>
+            <EllipsisP>{parkingLot.address}</EllipsisP>
           </FlexBox>
           <FlexBox gap="1rem">
             <H4>Id:</H4>
@@ -134,6 +151,9 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
               cursor="pointer"
               textColor={WHITE}
               bgColor={WHATSAPP_GREEN}
+              onClick={() => {
+                handleOpenEditModal(parkingLot);
+              }}
             >
               Edit
             </FlexBox>

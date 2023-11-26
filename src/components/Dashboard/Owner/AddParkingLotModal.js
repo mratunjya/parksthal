@@ -11,7 +11,7 @@ import styled, { keyframes } from "styled-components";
 import { H3 } from "@common/Text";
 import { Loader } from "@common/Loader";
 import { FlexBox } from "@common/FlexBox";
-import { POST_ADD_PARKING_LOT } from "@apis";
+import { POST_ADD_PARKING_LOT, POST_UPDATE_PARKING_LOTS } from "@apis";
 import { MediumButton } from "@common/Button";
 import SearchFilterDropdown from "@common/SearchFilterDropdown";
 import { CitiesByState, States } from "@meta/Dashboard/CountryStateCity";
@@ -32,7 +32,14 @@ const CloseButton = styled(FlexBox)`
   }
 `;
 
-const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => {
+const AddParkingLotModal = ({
+  user,
+  editModal,
+  parkingLot,
+  setOpenAddModal,
+  setOpenEditModal,
+  dashboardRightHeight,
+}) => {
   const [name, setName] = useState(null);
   const [cities, setCities] = useState(null);
   const [address, setAddress] = useState(null);
@@ -40,6 +47,15 @@ const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => 
   const [saveLoading, setSaveLoading] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
+
+  console.log(parkingLot);
+
+  useEffect(() => {
+    if (editModal) {
+      setName(parkingLot.name);
+      setAddress(parkingLot.address);
+    }
+  }, [editModal, parkingLot]);
 
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
@@ -50,7 +66,7 @@ const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => 
   };
 
   const handleSave = (e) => {
-    const payload = {
+    let payload = {
       email: user.email,
       name: name,
       country: country,
@@ -61,10 +77,20 @@ const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => 
 
     setSaveLoading(true);
 
+    const api = (editModal && POST_UPDATE_PARKING_LOTS) || POST_ADD_PARKING_LOT;
+
+    if (editModal) {
+      payload = { ...payload, parking_lot_id: parkingLot.parking_lot_id };
+    }
+
+    console.log(api);
+    console.log(payload, "payload");
+
     axios
-      .post(POST_ADD_PARKING_LOT, payload)
+      .post(api, payload)
       .then((response) => {
         setOpenAddModal(false);
+        setOpenEditModal(false);
         toast.success(response.data.success);
       })
       .catch((error) => {
@@ -74,8 +100,6 @@ const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => 
       .finally(() => {
         setSaveLoading(false);
       });
-
-    console.log("Save Payload:", payload);
   };
 
   useEffect(() => {
@@ -98,7 +122,10 @@ const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => 
       minHeight={dashboardRightHeight - 10 + "px"}
     >
       <CloseButton
-        onClick={() => setOpenAddModal(false)}
+        onClick={() => {
+          setOpenAddModal(false);
+          setOpenEditModal(false);
+        }}
         zIndex="2"
         right="1rem"
         cursor="pointer"
@@ -126,7 +153,7 @@ const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => 
             direction="column"
           >
             <H3>Parking Space Name:</H3>
-            <input type="text" onChange={handleNameChange} />
+            <input type="text" onChange={handleNameChange} value={name} />
           </FlexBox>
         </SwiperSlide>
         {name && (
@@ -194,7 +221,11 @@ const AddParkingLotModal = ({ user, setOpenAddModal, dashboardRightHeight }) => 
                         direction="column"
                       >
                         <H3>Enter Area and Street</H3>
-                        <input type="text" onChange={handleAddressChange} />
+                        <input
+                          type="text"
+                          value={address}
+                          onChange={handleAddressChange}
+                        />
                         {address && (
                           <MediumButton onClick={handleSave}>
                             {saveLoading ? <Loader color={WHITE} /> : "Save"}
