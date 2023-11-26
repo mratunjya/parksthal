@@ -65,13 +65,7 @@ const Profile = ({ user }) => {
   };
 
   return (
-    <FlexBox
-      flex="7"
-      gap="4rem"
-      align="center"
-      justify="center"
-      direction="column"
-    >
+    <FlexBox gap="4rem" align="center" justify="center" direction="column">
       <H1>Profile Details</H1>
       <form onSubmit={handleSubmit(submitHandler)}>
         <FlexBox gap="2rem" wrap="wrap" justify="center">
