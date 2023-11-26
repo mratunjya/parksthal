@@ -74,7 +74,7 @@ export const authOptions = {
         } else if (data.role === "owner") {
           const owner_api = `${process.env.API_ENDPOINT}/owners/owner_details`;
 
-          console.log({ owner_api, payload });
+          console.error({ owner_api, payload });
 
           const owner_response = await fetch(owner_api, {
             method: "POST",

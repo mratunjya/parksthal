@@ -55,7 +55,7 @@ const AuthLogInBtns = () => {
         router.push("dashboard/profile");
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setSaveClicked(false);
         toast.error(err.message);
       });
