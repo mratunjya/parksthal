@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import randomstring from "randomstring";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FlexBox } from "./FlexBox";
 import { PRIMARY_100, PRIMARY_500, SECONDARY_100, WHITE } from "@colors";
@@ -16,16 +16,20 @@ const StyledInput = styled.input`
 `;
 
 const SearchFilterDropdown = ({ data, selectedItem, setSelectedItem }) => {
-  const [filter, setFilter] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [filter, setFilter] = useState("");
+
+  useEffect(() => {
+    setFilter(selectedItem?.data);
+  }, [selectedItem]);
 
   const handleFilter = (event) => {
     setFilter(event.target.value);
   };
 
   const handleItemClick = (item) => {
-    setSelectedItem(item);
     setFilter(item?.data);
+    setSelectedItem(item);
     setIsDropdownOpen(false);
   };
 

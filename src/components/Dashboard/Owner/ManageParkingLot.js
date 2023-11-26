@@ -62,7 +62,6 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
 
   const handleOpenEditModal = (parkingLot) => {
     setOpenEditModal(true);
-    console.log(parkingLot);
     setEditParkingLot(parkingLot);
   };
 
@@ -111,67 +110,80 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
         />
         <H4>Add a Parking Lot</H4>
       </FlexBox>
-      {parkingLots?.map((parkingLot) => (
-        <FlexBox
-          gap="1rem"
-          width="100%"
-          radius="1rem"
-          justify="center"
-          maxWidth="250px"
-          direction="column"
-          margin="5px auto 0"
-          padding="1.5rem 2rem"
-          key={randomstring.generate()}
-          shadow={`0 0 4px 1px ${SECONDARY_100}`}
-        >
-          <FlexBox gap="1rem">
-            <H4>Name:</H4>
-            <EllipsisP>{parkingLot.name}</EllipsisP>
-          </FlexBox>
-          <FlexBox gap="1rem">
-            <H4>State:</H4>
-            <EllipsisP>{parkingLot.state}</EllipsisP>
-          </FlexBox>
-          <FlexBox gap="1rem">
-            <H4>City:</H4>
-            <EllipsisP>{parkingLot.city}</EllipsisP>
-          </FlexBox>
-          <FlexBox gap="1rem">
-            <H4>Address:</H4>
-            <EllipsisP>{parkingLot.address}</EllipsisP>
-          </FlexBox>
-          <FlexBox gap="1rem">
-            <H4>Id:</H4>
-            <P>{parkingLot.parking_lot_id}</P>
-          </FlexBox>
-          <FlexBox justify="space-between" padding="1rem 0 0">
-            <FlexBox
-              padding="0.5rem"
-              radius="0.25rem"
-              cursor="pointer"
-              textColor={WHITE}
-              bgColor={WHATSAPP_GREEN}
-              onClick={() => {
-                handleOpenEditModal(parkingLot);
-              }}
-            >
-              Edit
+      {parkingLots?.map((parkingLot) => {
+        return (
+          <FlexBox
+            gap="1rem"
+            width="100%"
+            radius="1rem"
+            justify="center"
+            maxWidth="350px"
+            direction="column"
+            margin="5px auto 0"
+            padding="1.5rem 2rem"
+            key={randomstring.generate()}
+            shadow={`0 0 4px 1px ${SECONDARY_100}`}
+          >
+            <FlexBox gap="1rem">
+              <H4>Name:</H4>
+              <EllipsisP>{parkingLot.name}</EllipsisP>
             </FlexBox>
-            <FlexBox
-              cursor="pointer"
-              radius="0.25rem"
-              padding="0.5rem"
-              textColor={WHITE}
-              bgColor={ERROR_RED}
-              onClick={() => {
-                deleteParkingLot(parkingLot.parking_lot_id);
-              }}
-            >
-              Delete
+            <FlexBox gap="1rem">
+              <H4>State:</H4>
+              <EllipsisP>{parkingLot.state}</EllipsisP>
+            </FlexBox>
+            <FlexBox gap="1rem">
+              <H4>City:</H4>
+              <EllipsisP>{parkingLot.city}</EllipsisP>
+            </FlexBox>
+            <FlexBox gap="1rem">
+              <H4>Address:</H4>
+              <EllipsisP>{parkingLot.address}</EllipsisP>
+            </FlexBox>
+            <FlexBox gap="1rem">
+              <H4>Price:</H4>
+              <EllipsisP>Rs. {parkingLot.price}</EllipsisP>
+            </FlexBox>
+            <FlexBox gap="1rem">
+              <H4>Booked:</H4>
+              <EllipsisP>
+                {parkingLot?.booked ? parkingLot?.booked : "0"}/
+                {parkingLot.total_capacity}
+              </EllipsisP>
+            </FlexBox>
+            <FlexBox gap="1rem">
+              <H4>Id:</H4>
+              <P>{parkingLot.parking_lot_id}</P>
+            </FlexBox>
+            <FlexBox justify="space-between" padding="1rem 0 0">
+              <FlexBox
+                padding="0.5rem"
+                radius="0.25rem"
+                cursor="pointer"
+                textColor={WHITE}
+                bgColor={WHATSAPP_GREEN}
+                onClick={() => {
+                  handleOpenEditModal(parkingLot);
+                }}
+              >
+                Edit
+              </FlexBox>
+              <FlexBox
+                cursor="pointer"
+                radius="0.25rem"
+                padding="0.5rem"
+                textColor={WHITE}
+                bgColor={ERROR_RED}
+                onClick={() => {
+                  deleteParkingLot(parkingLot.parking_lot_id);
+                }}
+              >
+                Delete
+              </FlexBox>
             </FlexBox>
           </FlexBox>
-        </FlexBox>
-      ))}
+        );
+      })}
     </FlexBox>
   );
 };
