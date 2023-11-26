@@ -1,3 +1,3 @@
-import Dashboard from "@components/Dashboard";
+import DashboardAllRoutes from "@components/Dashboard";
 
-export default Dashboard;
+export default DashboardAllRoutes;

@@ -3,24 +3,30 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Layout from "@layout";
-import { SessionUser } from "@Auth";
 import {
   POST_IS_ANY_MISSING_DETAILS_OWNER,
   POST_IS_ANY_MISSING_DETAILS_CONSUMER,
   POST_IS_ANY_MISSING_DETAILS_ATTENDANT,
 } from "@apis";
 import { FlexBox } from "@common/FlexBox";
+import { getSession } from "next-auth/react";
 import { PRIMARY_500, WHITE } from "@colors";
+import DashboardRight from "./DashBoardRight";
 import Profile from "@components/Dashboard/Profile";
 import DashboardLeft from "@components/Dashboard/DasbboardLeft";
-import DashboardRight from "./DashBoardRight";
 
-const Dashboard = () => {
-  const user = SessionUser();
+const DashboardAllRoutes = () => {
   const router = useRouter();
+  const [user, setUser] = useState({});
   const [routerQuery, setRouterQuery] = useState();
   const [navBarHeight, setNavBarHeight] = useState(0);
   const [missingDetailsApi, setMissingDetailsApi] = useState("");
+
+  useEffect(() => {
+    getSession().then((session) => {
+      setUser(session?.session?.user);
+    });
+  }, []);
 
   useEffect(() => {
     setNavBarHeight(document.querySelector("nav").offsetHeight);
@@ -88,7 +94,7 @@ const Dashboard = () => {
               {routerQuery === "profile" ? (
                 <Profile user={user} />
               ) : (
-                <DashboardRight />
+                <DashboardRight routerQuery={routerQuery} />
               )}
             </FlexBox>
           </FlexBox>
@@ -98,4 +104,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardAllRoutes;

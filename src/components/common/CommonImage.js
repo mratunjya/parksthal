@@ -2,10 +2,12 @@ import Image from "next/image";
 import styled from "styled-components";
 
 const CustomImage = styled(Image)`
+  flex: ${(props) => props.flex};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   align-self: ${(props) => props.align};
   width: ${(props) => props.width + "px"};
+  align-self: ${(props) => props.alignSelf};
   height: ${(props) => !props.width && props.height + "px"};
 `;
 
@@ -14,6 +16,7 @@ const CommonImage = ({
   alt,
   top,
   left,
+  flex,
   width,
   align,
   height,
@@ -23,6 +26,7 @@ const CommonImage = ({
   padding,
   position,
   objectFit,
+  alignSelf,
 }) => {
   return (
     <CustomImage
@@ -30,6 +34,7 @@ const CommonImage = ({
       src={src}
       alt={alt}
       left={left}
+      flex={flex}
       width={width}
       align={align}
       margin={margin}
@@ -39,6 +44,7 @@ const CommonImage = ({
       position={position}
       priority={priority}
       objectFit={objectFit}
+      alignSelf={alignSelf}
       quality={quality || 60}
     />
   );

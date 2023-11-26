@@ -18,7 +18,7 @@ const DashboardLeft = ({ user, routerQuery }) => {
         {DashboardMenu[`${user?.role}`]?.map((option) => (
           <CommonLink
             key={Math.random()}
-            href={`${routerQuery === "index" ? "dashboard/" : ""}${option
+            href={`${routerQuery ? "" : "dashboard/"}${option
               .toLowerCase()
               .replaceAll(" ", "-")}`}
           >
@@ -37,9 +37,7 @@ const DashboardLeft = ({ user, routerQuery }) => {
           </CommonLink>
         ))}
       </FlexBox>
-      <CommonLink
-        href={`${routerQuery === "index" ? "dashboard/" : ""}profile`}
-      >
+      <CommonLink href={`${routerQuery ? "" : "dashboard/"}profile`}>
         <FlexBox
           width="100%"
           align="center"
