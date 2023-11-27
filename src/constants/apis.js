@@ -16,3 +16,7 @@ export const POST_DELETE_PARKING_LOT = `${baseUrl}/parking_lots/delete`;
 export const POST_UPDATE_PARKING_LOTS = `${baseUrl}/parking_lots/update_parking_lot`;
 export const POST_PARKING_LOTS = `${baseUrl}/parking_lots/index_by_email`;
 export const GET_ALL_PARKING_LOTS = `${baseUrl}/parking_lots/show`;
+
+export const POST_GENERATE_ORDER_ID = `http://localhost:4000/payments/orders`;
+
+export const POST_CREATE_BOOKINGS = `${baseUrl}/bookings`;

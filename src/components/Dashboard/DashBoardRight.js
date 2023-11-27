@@ -12,7 +12,10 @@ const DashboardRight = ({ routerQuery, user, dashboardRightHeight }) => {
     );
   } else if (routerQuery === "available-parking-spots") {
     return (
-      <AvailableParkingSpots dashboardRightHeight={dashboardRightHeight} />
+      <AvailableParkingSpots
+        user={user}
+        dashboardRightHeight={dashboardRightHeight}
+      />
     );
   }
   return <IndexRight />;

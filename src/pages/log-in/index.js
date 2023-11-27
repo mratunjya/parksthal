@@ -6,6 +6,7 @@ import Layout from "@layout";
 import { H1 } from "@common/Text";
 import { Loader } from "@common/Loader";
 import { FlexBox } from "@common/FlexBox";
+import RazorpayComponent from "@common/DisplayRazorpay";
 import AuthLogInBtns from "@components/Log-In/AuthLogInBtns";
 import { IsAuthenticated, SessionStatus, SessionUser } from "@Auth";
 
