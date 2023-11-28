@@ -66,28 +66,32 @@ const CommonNavBar = () => {
     </CommonLink>
   );
 
-  const RenderAllNavLinks = () =>
-    navLinksData.map((navLink, index) => (
-      <CommonLink href={navLink.href} key={randomstring.generate()}>
-        <NavCta
-          onClick={closeNavBar}
-          toUpper
-          align="center"
-          radius="0.5rem"
-          justify="center"
-          padding="0.5rem"
-          bgColor="transparent"
-          border="2px solid transparent"
-        >
-          <H5 whiteSpace="nowrap" color={SECONDARY_400}>
-            {navLink.name}
-          </H5>
-        </NavCta>
-      </CommonLink>
-    ));
+  const RenderAllNavLinks = ({ isAuthenticated }) =>
+    navLinksData.map((navLink, index) => {
+      if ((navLink?.auth && isAuthenticated) || !navLink?.auth) {
+        return (
+          <CommonLink href={navLink.href} key={randomstring.generate()}>
+            <NavCta
+              onClick={closeNavBar}
+              toUpper
+              align="center"
+              radius="0.5rem"
+              justify="center"
+              padding="0.5rem"
+              bgColor="transparent"
+              border="2px solid transparent"
+            >
+              <H5 whiteSpace="nowrap" color={SECONDARY_400}>
+                {navLink.name}
+              </H5>
+            </NavCta>
+          </CommonLink>
+        );
+      }
+    });
 
   const RenderWhatsAppBtn = () => (
-    <CommonLink target="_blank" href={WHATSAPP_URL}>
+    <CommonLink target="_blank" href={WHATSAPP_URL} ariaLabel="What's App CTA">
       <WhatsappWrapper
         ratio="1"
         radius="50%"
@@ -151,23 +155,7 @@ const CommonNavBar = () => {
             position="relative"
           >
             <FlexBox align="center" justify="center" gap="0.75rem">
-              <RenderAllNavLinks />
-              <CommonLink href="/dashboard">
-                <NavCta
-                  onClick={closeNavBar}
-                  toUpper
-                  align="center"
-                  radius="0.5rem"
-                  justify="center"
-                  padding="0.5rem"
-                  bgColor="transparent"
-                  border="2px solid transparent"
-                >
-                  <H5 whiteSpace="nowrap" color={SECONDARY_400}>
-                    Dashboard
-                  </H5>
-                </NavCta>
-              </CommonLink>
+              <RenderAllNavLinks isAuthenticated={isAuthenticated} />
             </FlexBox>
             <FlexBox gap="1.5rem" align="center" justify="center">
               <RenderWhatsAppBtn />

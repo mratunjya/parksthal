@@ -9,10 +9,10 @@ const CommonLinkComponent = styled(Link)`
   }
 `;
 
-const CommonLink = ({ href, children, target }) => {
+const CommonLink = ({ href, children, target, ariaLabel }) => {
   if (href?.indexOf("http") === 0)
     return (
-      <a href={href} target={target}>
+      <a href={href} target={target} aria-label={ariaLabel}>
         {children}
       </a>
     );

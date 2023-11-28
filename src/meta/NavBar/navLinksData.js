@@ -15,4 +15,9 @@ export const navLinksData = [
     name: "Privacy Policy",
     href: "/privacy-policy",
   },
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+    auth: true,
+  },
 ];
