@@ -1,4 +1,5 @@
 import IndexRight from "./IndexRight";
+import ParkingHistory from "./Consumer/ParkingHistory";
 import ManageParkingLot from "./Owner/ManageParkingLot";
 import AvailableParkingSpots from "./Consumer/AvailableParkingSpots";
 
@@ -16,6 +17,10 @@ const DashboardRight = ({ routerQuery, user, dashboardRightHeight }) => {
         user={user}
         dashboardRightHeight={dashboardRightHeight}
       />
+    );
+  } else if (routerQuery === "booking-history") {
+    return (
+      <ParkingHistory user={user} dashboardRightHeight={dashboardRightHeight} />
     );
   }
   return <IndexRight />;

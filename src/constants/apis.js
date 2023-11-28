@@ -20,3 +20,4 @@ export const GET_ALL_PARKING_LOTS = `${baseUrl}/parking_lots/show`;
 export const POST_GENERATE_ORDER_ID = `http://localhost:4000/payments/orders`;
 
 export const POST_CREATE_BOOKINGS = `${baseUrl}/bookings`;
+export const GET_BOOKING_HISTORY = `${baseUrl}/bookings`;

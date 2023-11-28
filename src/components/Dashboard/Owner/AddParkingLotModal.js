@@ -35,6 +35,8 @@ const CloseButton = styled(FlexBox)`
 const AddParkingLotModal = ({
   user,
   editModal,
+  modalLeft,
+  modalWidth,
   parkingLot,
   setOpenAddModal,
   setOpenEditModal,
@@ -119,16 +121,16 @@ const AddParkingLotModal = ({
   return (
     <Wrapper
       flex="1"
-      margin="5px"
       radius="1rem"
       cursor="grab"
       padding="1rem"
       bgColor={WHITE}
-      position="absolute"
-      width="calc(100% - 10px)"
+      position="fixed"
+      left={modalLeft + "px"}
+      width={modalWidth + "px"}
       shadow={`0 0 4px 1px ${SECONDARY_100}`}
-      height={dashboardRightHeight - 10 + "px"}
-      minHeight={dashboardRightHeight - 10 + "px"}
+      height={dashboardRightHeight + "px"}
+      minHeight={dashboardRightHeight + "px"}
     >
       <CloseButton
         onClick={() => {

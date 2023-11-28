@@ -2,7 +2,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import randomstring from "randomstring";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { H4, P } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
@@ -17,10 +17,21 @@ const EllipsisP = styled(P)`
 `;
 
 const ManageParkingLot = ({ user, dashboardRightHeight }) => {
+  const manageParkingLotWrapperRef = useRef();
+  const [modalLeft, setModalLeft] = useState(null);
+  const [modalWidth, setModalWidth] = useState(null);
   const [parkingLots, setParkingLots] = useState(null);
   const [openAddModal, setOpenAddModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [editParkingLot, setEditParkingLot] = useState(null);
+
+  useEffect(() => {
+    setModalLeft(manageParkingLotWrapperRef?.current?.offsetLeft);
+    setModalWidth(manageParkingLotWrapperRef?.current?.offsetWidth);
+  }, [
+    manageParkingLotWrapperRef?.current?.offsetLeft,
+    manageParkingLotWrapperRef?.current?.offsetWidth,
+  ]);
 
   const deleteParkingLot = (parking_lot_id) => {
     const payload = { parking_lot_id: parking_lot_id };
@@ -70,16 +81,120 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
   }, [fetchParkingLots, openAddModal, openEditModal]);
 
   return (
-    <FlexBox
-      gap="2rem"
-      wrap="wrap"
-      overflow="auto"
-      position="relative"
-      height={dashboardRightHeight + "px"}
-    >
+    <>
+      <FlexBox
+        gap="2rem"
+        wrap="wrap"
+        overflow="auto"
+        position="relative"
+        ref={manageParkingLotWrapperRef}
+        id="manageParkingLotWrapperRef"
+        height={dashboardRightHeight + "px"}
+      >
+        <FlexBox
+          onClick={handleOpenAddModal}
+          gap="2rem"
+          width="100%"
+          radius="1rem"
+          align="center"
+          cursor="pointer"
+          justify="center"
+          maxWidth="250px"
+          margin="5px auto 0"
+          direction="column"
+          height="fit-content"
+          padding="1.5rem 2rem"
+          shadow={`0 0 4px 1px ${SECONDARY_100}`}
+        >
+          <CommonImage
+            width={100}
+            height={100}
+            alt="Add Image"
+            src="/assets/dashboard/add.svg"
+          />
+          <H4>Add a Parking Lot</H4>
+        </FlexBox>
+        {parkingLots?.map((parkingLot) => {
+          return (
+            <FlexBox
+              gap="1rem"
+              width="100%"
+              radius="1rem"
+              justify="center"
+              maxWidth="350px"
+              direction="column"
+              margin="5px auto 0"
+              height="fit-content"
+              padding="1.5rem 2rem"
+              key={randomstring.generate()}
+              shadow={`0 0 4px 1px ${SECONDARY_100}`}
+            >
+              <FlexBox gap="1rem">
+                <H4>Name:</H4>
+                <EllipsisP>{parkingLot.name}</EllipsisP>
+              </FlexBox>
+              <FlexBox gap="1rem">
+                <H4>State:</H4>
+                <EllipsisP>{parkingLot.state}</EllipsisP>
+              </FlexBox>
+              <FlexBox gap="1rem">
+                <H4>City:</H4>
+                <EllipsisP>{parkingLot.city}</EllipsisP>
+              </FlexBox>
+              <FlexBox gap="1rem">
+                <H4>Address:</H4>
+                <EllipsisP>{parkingLot.address}</EllipsisP>
+              </FlexBox>
+              <FlexBox gap="1rem">
+                <H4>Price:</H4>
+                <EllipsisP>Rs. {parkingLot.price}</EllipsisP>
+              </FlexBox>
+              <FlexBox gap="1rem">
+                <H4>Booked:</H4>
+                <EllipsisP>
+                  {parkingLot?.booked ? parkingLot?.booked : "0"}/
+                  {parkingLot.total_capacity}
+                </EllipsisP>
+              </FlexBox>
+              <FlexBox gap="1rem">
+                <H4>Id:</H4>
+                <P>{parkingLot.parking_lot_id}</P>
+              </FlexBox>
+              <FlexBox justify="space-between" padding="1rem 0 0">
+                <FlexBox
+                  padding="0.5rem"
+                  radius="0.25rem"
+                  cursor="pointer"
+                  textColor={WHITE}
+                  bgColor={WHATSAPP_GREEN}
+                  onClick={() => {
+                    handleOpenEditModal(parkingLot);
+                  }}
+                >
+                  Edit
+                </FlexBox>
+                <FlexBox
+                  cursor="pointer"
+                  radius="0.25rem"
+                  padding="0.5rem"
+                  textColor={WHITE}
+                  bgColor={ERROR_RED}
+                  onClick={() => {
+                    deleteParkingLot(parkingLot.parking_lot_id);
+                  }}
+                >
+                  Delete
+                </FlexBox>
+              </FlexBox>
+            </FlexBox>
+          );
+        })}
+      </FlexBox>
       {(openAddModal || openEditModal) && (
         <AddParkingLotModal
           user={user}
+          modalLeft={modalLeft}
+          modalWidth={modalWidth}
           editModal={openEditModal}
           parkingLot={editParkingLot}
           setOpenAddModal={setOpenAddModal}
@@ -87,104 +202,7 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
           dashboardRightHeight={dashboardRightHeight}
         />
       )}
-      <FlexBox
-        onClick={handleOpenAddModal}
-        gap="2rem"
-        width="100%"
-        radius="1rem"
-        align="center"
-        cursor="pointer"
-        justify="center"
-        maxWidth="250px"
-        margin="5px auto 0"
-        direction="column"
-        height="fit-content"
-        padding="1.5rem 2rem"
-        shadow={`0 0 4px 1px ${SECONDARY_100}`}
-      >
-        <CommonImage
-          width={100}
-          height={100}
-          alt="Add Image"
-          src="/assets/dashboard/add.svg"
-        />
-        <H4>Add a Parking Lot</H4>
-      </FlexBox>
-      {parkingLots?.map((parkingLot) => {
-        return (
-          <FlexBox
-            gap="1rem"
-            width="100%"
-            radius="1rem"
-            justify="center"
-            maxWidth="350px"
-            direction="column"
-            margin="5px auto 0"
-            padding="1.5rem 2rem"
-            key={randomstring.generate()}
-            shadow={`0 0 4px 1px ${SECONDARY_100}`}
-          >
-            <FlexBox gap="1rem">
-              <H4>Name:</H4>
-              <EllipsisP>{parkingLot.name}</EllipsisP>
-            </FlexBox>
-            <FlexBox gap="1rem">
-              <H4>State:</H4>
-              <EllipsisP>{parkingLot.state}</EllipsisP>
-            </FlexBox>
-            <FlexBox gap="1rem">
-              <H4>City:</H4>
-              <EllipsisP>{parkingLot.city}</EllipsisP>
-            </FlexBox>
-            <FlexBox gap="1rem">
-              <H4>Address:</H4>
-              <EllipsisP>{parkingLot.address}</EllipsisP>
-            </FlexBox>
-            <FlexBox gap="1rem">
-              <H4>Price:</H4>
-              <EllipsisP>Rs. {parkingLot.price}</EllipsisP>
-            </FlexBox>
-            <FlexBox gap="1rem">
-              <H4>Booked:</H4>
-              <EllipsisP>
-                {parkingLot?.booked ? parkingLot?.booked : "0"}/
-                {parkingLot.total_capacity}
-              </EllipsisP>
-            </FlexBox>
-            <FlexBox gap="1rem">
-              <H4>Id:</H4>
-              <P>{parkingLot.parking_lot_id}</P>
-            </FlexBox>
-            <FlexBox justify="space-between" padding="1rem 0 0">
-              <FlexBox
-                padding="0.5rem"
-                radius="0.25rem"
-                cursor="pointer"
-                textColor={WHITE}
-                bgColor={WHATSAPP_GREEN}
-                onClick={() => {
-                  handleOpenEditModal(parkingLot);
-                }}
-              >
-                Edit
-              </FlexBox>
-              <FlexBox
-                cursor="pointer"
-                radius="0.25rem"
-                padding="0.5rem"
-                textColor={WHITE}
-                bgColor={ERROR_RED}
-                onClick={() => {
-                  deleteParkingLot(parkingLot.parking_lot_id);
-                }}
-              >
-                Delete
-              </FlexBox>
-            </FlexBox>
-          </FlexBox>
-        );
-      })}
-    </FlexBox>
+    </>
   );
 };
 

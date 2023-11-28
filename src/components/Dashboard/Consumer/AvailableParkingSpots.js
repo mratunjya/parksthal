@@ -73,6 +73,7 @@ const AvailableParkingSpots = ({ user, dashboardRightHeight }) => {
           maxWidth="350px"
           direction="column"
           margin="5px auto 0"
+          height="fit-content"
           padding="1.5rem 2rem"
           key={randomstring.generate()}
           shadow={`0 0 4px 1px ${SECONDARY_100}`}
