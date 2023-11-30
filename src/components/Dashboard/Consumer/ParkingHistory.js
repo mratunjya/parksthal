@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import { H4, P } from "@common/Text";
 import { SECONDARY_100 } from "@colors";
 import { FlexBox } from "@common/FlexBox";
+import PageLoader from "@common/PageLoader";
 import { GET_BOOKING_HISTORY } from "@apis";
 
 const EllipsisP = styled(P)`
@@ -16,8 +17,10 @@ const EllipsisP = styled(P)`
 
 const ParkingHistory = ({ user, dashboardRightHeight }) => {
   const [parkingLots, setParkingLots] = useState(null);
+  const [pageLoading, setPageLoading] = useState(true);
 
   const fetchBookings = useCallback(() => {
+    setPageLoading(true);
     axios
       .get(GET_BOOKING_HISTORY + `?email=${user?.email}`)
       .then((response) => {
@@ -26,6 +29,9 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
       .catch((error) => {
         toast.error(error.message);
         console.error(error);
+      })
+      .finally(() => {
+        setPageLoading(false);
       });
   }, [user]);
 
@@ -33,7 +39,9 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
     fetchBookings(); // Initial fetch
   }, [fetchBookings, user]);
 
-  return (
+  return pageLoading ? (
+    <PageLoader />
+  ) : (
     <FlexBox
       gap="2rem"
       wrap="wrap"
@@ -50,12 +58,13 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
           maxWidth="350px"
           direction="column"
           margin="5px auto 0"
+          height="fit-content"
           padding="1.5rem 2rem"
           key={randomstring.generate()}
           shadow={`0 0 4px 1px ${SECONDARY_100}`}
         >
           <FlexBox gap="1rem">
-            <H4>Parking Space Name:</H4>
+            <H4>Parking Space:</H4>
             <EllipsisP>{parkingLot.name}</EllipsisP>
           </FlexBox>
           <FlexBox gap="1rem">

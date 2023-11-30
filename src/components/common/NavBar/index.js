@@ -1,9 +1,19 @@
-import randomstring from "randomstring";
 import chroma from "chroma-js";
+import randomstring from "randomstring";
 import { BsWhatsapp } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 
+import {
+  WHITE,
+  BLACK,
+  PRIMARY_500,
+  TERTIARY_200,
+  SECONDARY_200,
+  SECONDARY_400,
+  WHATSAPP_GREEN,
+} from "@colors";
+import Image from "next/image";
 import { H5 } from "@common/Text";
 import { LogOut } from "@utils/LogOut";
 import { Loader } from "@common/Loader";
@@ -12,16 +22,8 @@ import { WHATSAPP_URL } from "@constants";
 import CommonLink from "@common/CommonLink";
 import { SmallButton } from "@common/Button";
 import CommonImage from "@common/CommonImage";
-import { IsAuthenticated, SessionStatus } from "@Auth";
+import { IsAuthenticated, SessionStatus, SessionUser } from "@Auth";
 import { navLinksData } from "@meta/NavBar/navLinksData";
-import {
-  WHITE,
-  BLACK,
-  TERTIARY_200,
-  SECONDARY_200,
-  SECONDARY_400,
-  WHATSAPP_GREEN,
-} from "@colors";
 
 import {
   NavBar,
@@ -35,6 +37,7 @@ import {
 } from "./indexStyle";
 
 const CommonNavBar = () => {
+  const user = SessionUser();
   const isAuthenticated = IsAuthenticated();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLogOutClick, setIsLogOutClick] = useState(false);
@@ -111,15 +114,43 @@ const CommonNavBar = () => {
         <Loader color={TERTIARY_200} />
       </SmallButton>
     ) : isAuthenticated ? (
-      <SmallButton
-        onClick={() => {
-          LogOut();
-          setIsLogOutClick(true);
-        }}
-        disabled={isLogOutClick}
-      >
-        {isLogOutClick ? <Loader color={TERTIARY_200} /> : "Log Out"}
-      </SmallButton>
+      <>
+        <SmallButton
+          onClick={() => {
+            LogOut();
+            setIsLogOutClick(true);
+          }}
+          disabled={isLogOutClick}
+          style={{
+            borderLeftWidth: !isLogOutClick && "0",
+          }}
+          border={`1px solid ${PRIMARY_500}`}
+          bgColor={isLogOutClick ? PRIMARY_500 : WHITE}
+          padding={!isLogOutClick ? "0 1rem 0 0 !important" : "auto"}
+        >
+          {isLogOutClick ? (
+            <Loader color={TERTIARY_200} />
+          ) : (
+            <FlexBox
+              align="center"
+              justify="center"
+              gap="1rem"
+              textColor={PRIMARY_500}
+            >
+              <FlexBox radius="50%" overflow="hidden" bgColor={PRIMARY_500}>
+                <Image
+                  src={user?.image}
+                  width={44}
+                  height={44}
+                  quality={100}
+                  alt="User Image"
+                />
+              </FlexBox>
+              {"Log Out"}
+            </FlexBox>
+          )}
+        </SmallButton>
+      </>
     ) : (
       <CommonLink href="/log-in">
         <SmallButton>Log In</SmallButton>
@@ -209,7 +240,7 @@ const CommonNavBar = () => {
           bgColor={chroma(WHITE).alpha(0.8).css()}
         >
           <FlexBox gap="0.75rem" align="flex-start" direction="column">
-            <RenderAllNavLinks />
+            <RenderAllNavLinks isAuthenticated={isAuthenticated} />
           </FlexBox>
           <FlexBox gap="1rem" align="center" justify="center">
             <RenderWhatsAppBtn />

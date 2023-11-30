@@ -163,7 +163,7 @@ const AddParkingLotModal = ({
             justify="center"
             direction="column"
           >
-            <H3>Parking Space Name:</H3>
+            <H3>Parking Space:</H3>
             <input type="text" onChange={handleNameChange} value={name} />
           </FlexBox>
         </SwiperSlide>

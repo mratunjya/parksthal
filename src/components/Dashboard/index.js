@@ -21,6 +21,7 @@ const DashboardAllRoutes = () => {
   const [user, setUser] = useState({});
   const [routerQuery, setRouterQuery] = useState();
   const [navBarHeight, setNavBarHeight] = useState(0);
+  const [title, setTitle] = useState("ParkSthal: Dashboard");
   const [missingDetailsApi, setMissingDetailsApi] = useState("");
   const [dashboardRightHeight, setDashboardRightHeight] = useState(null);
 
@@ -28,7 +29,7 @@ const DashboardAllRoutes = () => {
     getSession().then((session) => {
       setUser(session?.session?.user);
     });
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     setDashboardRightHeight(dashboardRightRef?.current?.offsetHeight);
@@ -72,7 +73,7 @@ const DashboardAllRoutes = () => {
   }, [missingDetailsApi, router, user]);
 
   return (
-    <Layout title="ParkSthal: Dashboard" privateRoute>
+    <Layout title={title} privateRoute>
       <FlexBox
         flex="1"
         align="center"
@@ -102,6 +103,7 @@ const DashboardAllRoutes = () => {
               flex="7"
               bgColor={WHITE}
               direction="column"
+              position="relative"
               padding="0 0 0 2rem"
             >
               {routerQuery === "profile" ? (
@@ -109,6 +111,7 @@ const DashboardAllRoutes = () => {
               ) : (
                 <DashboardRight
                   user={user}
+                  setTitle={setTitle}
                   routerQuery={routerQuery}
                   dashboardRightHeight={dashboardRightHeight}
                 />

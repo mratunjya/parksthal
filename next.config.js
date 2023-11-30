@@ -4,12 +4,9 @@ const withPWA = require("next-pwa");
 
 module.exports = withPWA({
   pwa: {
-    scope: "/",
-    sw: "sw.js",
     dest: "public",
     register: true,
-    cachingStrategy: "offline",
-    disable: process.env.NODE_ENV !== "development",
+    skipWaiting: true,
   },
 });
 
@@ -19,6 +16,10 @@ const nextConfig = {
 
   compiler: {
     styledComponents: true,
+  },
+
+  images: {
+    domains: ["lh3.googleusercontent.com"],
   },
 
   async redirects() {

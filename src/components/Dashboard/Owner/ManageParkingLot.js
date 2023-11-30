@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { H4, P } from "@common/Text";
 import { FlexBox } from "@common/FlexBox";
+import PageLoader from "@common/PageLoader";
 import CommonImage from "@common/CommonImage";
 import AddParkingLotModal from "./AddParkingLotModal";
 import { POST_DELETE_PARKING_LOT, POST_PARKING_LOTS } from "@apis";
@@ -18,6 +19,7 @@ const EllipsisP = styled(P)`
 
 const ManageParkingLot = ({ user, dashboardRightHeight }) => {
   const manageParkingLotWrapperRef = useRef();
+  const [loading, setLoading] = useState(true);
   const [modalLeft, setModalLeft] = useState(null);
   const [modalWidth, setModalWidth] = useState(null);
   const [parkingLots, setParkingLots] = useState(null);
@@ -26,12 +28,11 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
   const [editParkingLot, setEditParkingLot] = useState(null);
 
   useEffect(() => {
-    setModalLeft(manageParkingLotWrapperRef?.current?.offsetLeft);
+    setModalLeft(
+      manageParkingLotWrapperRef?.current?.getBoundingClientRect()?.left
+    );
     setModalWidth(manageParkingLotWrapperRef?.current?.offsetWidth);
-  }, [
-    manageParkingLotWrapperRef?.current?.offsetLeft,
-    manageParkingLotWrapperRef?.current?.offsetWidth,
-  ]);
+  }, [manageParkingLotWrapperRef]);
 
   const deleteParkingLot = (parking_lot_id) => {
     const payload = { parking_lot_id: parking_lot_id };
@@ -50,6 +51,7 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
   };
 
   const fetchParkingLots = useCallback(() => {
+    setLoading(true);
     const payload = { email: user.email };
 
     axios
@@ -60,6 +62,9 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
       .catch((error) => {
         toast.error(error.message);
         console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [user]);
 
@@ -80,17 +85,31 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
     !openAddModal && !openEditModal && fetchParkingLots();
   }, [fetchParkingLots, openAddModal, openEditModal]);
 
-  return (
+  return loading ? (
+    <PageLoader />
+  ) : (
     <>
       <FlexBox
         gap="2rem"
         wrap="wrap"
         overflow="auto"
         position="relative"
-        ref={manageParkingLotWrapperRef}
         id="manageParkingLotWrapperRef"
+        ref={manageParkingLotWrapperRef}
         height={dashboardRightHeight + "px"}
       >
+        {(openAddModal || openEditModal) && (
+          <AddParkingLotModal
+            user={user}
+            modalLeft={modalLeft}
+            modalWidth={modalWidth}
+            editModal={openEditModal}
+            parkingLot={editParkingLot}
+            setOpenAddModal={setOpenAddModal}
+            setOpenEditModal={setOpenEditModal}
+            dashboardRightHeight={dashboardRightHeight}
+          />
+        )}
         <FlexBox
           onClick={handleOpenAddModal}
           gap="2rem"
@@ -190,18 +209,6 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
           );
         })}
       </FlexBox>
-      {(openAddModal || openEditModal) && (
-        <AddParkingLotModal
-          user={user}
-          modalLeft={modalLeft}
-          modalWidth={modalWidth}
-          editModal={openEditModal}
-          parkingLot={editParkingLot}
-          setOpenAddModal={setOpenAddModal}
-          setOpenEditModal={setOpenEditModal}
-          dashboardRightHeight={dashboardRightHeight}
-        />
-      )}
     </>
   );
 };

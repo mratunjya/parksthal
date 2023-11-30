@@ -45,7 +45,7 @@ const CommonImage = ({
       priority={priority}
       objectFit={objectFit}
       alignSelf={alignSelf}
-      quality={quality || 60}
+      quality={quality || 100}
     />
   );
 };

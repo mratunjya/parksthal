@@ -5,10 +5,12 @@ import randomstring from "randomstring";
 import { useCallback, useEffect, useState } from "react";
 
 import { H4, P } from "@common/Text";
+import { Loader } from "@common/Loader";
 import { FlexBox } from "@common/FlexBox";
+import PageLoader from "@common/PageLoader";
 import { GET_ALL_PARKING_LOTS } from "@apis";
-import { FACEBOOK_BLUE, SECONDARY_100, WHATSAPP_GREEN, WHITE } from "@colors";
 import { DisplayRazorpay } from "@common/DisplayRazorpay";
+import { FACEBOOK_BLUE, SECONDARY_100, WHATSAPP_GREEN, WHITE } from "@colors";
 
 const EllipsisP = styled(P)`
   overflow: hidden;
@@ -16,9 +18,12 @@ const EllipsisP = styled(P)`
 `;
 
 const AvailableParkingSpots = ({ user, dashboardRightHeight }) => {
+  const [loading, setLoading] = useState(false);
   const [parkingLots, setParkingLots] = useState(null);
+  const [pageLoading, setPageLoading] = useState(true);
 
   const fetchParkingLots = useCallback(() => {
+    setPageLoading(true);
     axios
       .get(GET_ALL_PARKING_LOTS + `?email=${user?.email}`)
       .then((response) => {
@@ -27,6 +32,9 @@ const AvailableParkingSpots = ({ user, dashboardRightHeight }) => {
       .catch((error) => {
         toast.error(error.message);
         console.error(error);
+      })
+      .finally(() => {
+        setPageLoading(false);
       });
   }, [user]);
 
@@ -35,28 +43,37 @@ const AvailableParkingSpots = ({ user, dashboardRightHeight }) => {
   }, [fetchParkingLots, user]);
 
   const handleBooking = ({ parkingLot, user }) => {
-    const { price, parking_lot_id } = parkingLot;
+    setLoading(true);
+
     const { email, name, phone } = user;
+    const { price, parking_lot_id } = parkingLot;
 
     DisplayRazorpay({
       name,
       email,
       phone,
       price,
+      setLoading,
       parking_lot_id,
       handleSuccess: (successMessage) => {
         // Handle the success scenario
+        setLoading(false);
         fetchParkingLots();
         toast.success(successMessage);
       },
       handleError: (errorMessage) => {
         // Handle the error scenario
+        setLoading(false);
         toast.error(errorMessage);
       },
     });
   };
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : pageLoading ? (
+    <PageLoader />
+  ) : (
     <FlexBox
       gap="2rem"
       wrap="wrap"

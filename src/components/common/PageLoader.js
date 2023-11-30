@@ -6,6 +6,7 @@ const PageLoader = () => (
       top: "50%",
       left: "50%",
       position: "fixed",
+      position: "absolute",
       transform: "translate(-50%, -50%)",
       animation: "spin 1s linear infinite",
     }}

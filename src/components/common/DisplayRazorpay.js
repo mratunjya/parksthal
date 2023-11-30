@@ -7,6 +7,7 @@ export const DisplayRazorpay = async ({
   price,
   email,
   phone,
+  setLoading,
   handleError,
   handleSuccess,
   parking_lot_id,
@@ -83,6 +84,8 @@ export const DisplayRazorpay = async ({
       color: PRIMARY_500,
     },
   };
+
+  setLoading(false);
 
   const paymentObject = new window.Razorpay(options);
   paymentObject.open();
