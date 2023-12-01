@@ -9,6 +9,7 @@ import {
   BLACK,
   PRIMARY_500,
   TERTIARY_200,
+  TERTIARY_500,
   SECONDARY_200,
   SECONDARY_400,
   WHATSAPP_GREEN,
@@ -121,9 +122,6 @@ const CommonNavBar = () => {
             setIsLogOutClick(true);
           }}
           disabled={isLogOutClick}
-          style={{
-            borderLeftWidth: !isLogOutClick && "0",
-          }}
           border={`1px solid ${PRIMARY_500}`}
           bgColor={isLogOutClick ? PRIMARY_500 : WHITE}
           padding={!isLogOutClick ? "0 1rem 0 0 !important" : "auto"}
@@ -137,7 +135,7 @@ const CommonNavBar = () => {
               gap="1rem"
               textColor={PRIMARY_500}
             >
-              <FlexBox radius="50%" overflow="hidden" bgColor={PRIMARY_500}>
+              <FlexBox radius="50%" overflow="hidden" bgColor={TERTIARY_500}>
                 <Image
                   src={user?.image}
                   width={44}

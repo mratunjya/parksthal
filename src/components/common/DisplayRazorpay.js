@@ -1,6 +1,7 @@
 import axios from "axios";
-import { POST_CREATE_BOOKINGS, POST_GENERATE_ORDER_ID } from "@apis";
+
 import { PRIMARY_500 } from "@colors";
+import { POST_CREATE_BOOKINGS, POST_GENERATE_ORDER_ID } from "@apis";
 
 export const DisplayRazorpay = async ({
   name,
@@ -12,25 +13,26 @@ export const DisplayRazorpay = async ({
   handleSuccess,
   parking_lot_id,
 }) => {
-  function loadScript(src) {
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
-    });
-  }
-  const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+  // function loadScript(src) {
+  //   return new Promise((resolve) => {
+  //     const script = document.createElement("script");
+  //     script.src = src;
+  //     script.onload = () => {
+  //       resolve(true);
+  //     };
+  //     script.onerror = () => {
+  //       resolve(false);
+  //     };
+  //     document.body.appendChild(script);
+  //   });
+  // }
+  // const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
-  if (!res) {
-    alert("Razorpay SDK failed to load. Are you online?");
-    return;
-  }
+  // if (!res) {
+  //   setLoading(false);
+  //   alert("Razorpay SDK failed to load. Are you online?");
+  //   return;
+  // }
 
   const result = await axios.post(POST_GENERATE_ORDER_ID, { amount: price });
 

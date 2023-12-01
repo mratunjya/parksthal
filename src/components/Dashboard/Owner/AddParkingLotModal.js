@@ -268,11 +268,18 @@ const AddParkingLotModal = ({
                                 direction="column"
                               >
                                 <H3>Price</H3>
-                                <input
-                                  type="number"
-                                  value={price}
-                                  onChange={handlePriceChange}
-                                />
+                                <FlexBox
+                                  align="center"
+                                  justify="center"
+                                  gap="1rem"
+                                >
+                                  <h2>₹</h2>
+                                  <input
+                                    type="number"
+                                    value={price}
+                                    onChange={handlePriceChange}
+                                  />
+                                </FlexBox>
                                 {price && (
                                   <MediumButton onClick={handleSave}>
                                     {saveLoading ? (

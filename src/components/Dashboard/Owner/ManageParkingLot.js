@@ -32,7 +32,10 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
       manageParkingLotWrapperRef?.current?.getBoundingClientRect()?.left
     );
     setModalWidth(manageParkingLotWrapperRef?.current?.offsetWidth);
-  }, [manageParkingLotWrapperRef]);
+  }, [
+    manageParkingLotWrapperRef?.current?.offsetWidth,
+    manageParkingLotWrapperRef,
+  ]);
 
   const deleteParkingLot = (parking_lot_id) => {
     const payload = { parking_lot_id: parking_lot_id };
@@ -93,7 +96,10 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
         gap="2rem"
         wrap="wrap"
         overflow="auto"
+        gapMobile="1rem"
         position="relative"
+        heightMobile="100%"
+        justifyMobile="center"
         id="manageParkingLotWrapperRef"
         ref={manageParkingLotWrapperRef}
         height={dashboardRightHeight + "px"}
@@ -119,10 +125,12 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
           cursor="pointer"
           justify="center"
           maxWidth="250px"
+          marginMobile="5px"
           margin="5px auto 0"
           direction="column"
           height="fit-content"
           padding="1.5rem 2rem"
+          paddingMobile="1rem 1.5rem"
           shadow={`0 0 4px 1px ${SECONDARY_100}`}
         >
           <CommonImage
@@ -142,9 +150,11 @@ const ManageParkingLot = ({ user, dashboardRightHeight }) => {
               justify="center"
               maxWidth="350px"
               direction="column"
+              marginMobile="5px"
               margin="5px auto 0"
               height="fit-content"
               padding="1.5rem 2rem"
+              paddingMobile="1rem 1.5rem"
               key={randomstring.generate()}
               shadow={`0 0 4px 1px ${SECONDARY_100}`}
             >

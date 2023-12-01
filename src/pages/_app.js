@@ -1,14 +1,13 @@
-import "@styles/globals.css";
-
 import Head from "next/head";
-import GlobalStyles from "@GlobalStyles";
 import { useEffect, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import NextNProgress from "nextjs-progressbar";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
 
+import "@styles/globals.css";
 import { PRIMARY_500 } from "@colors";
+import GlobalStyles from "@GlobalStyles";
 import PageLoader from "@common/PageLoader";
 
 export default function App({

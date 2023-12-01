@@ -76,19 +76,24 @@ const DashboardAllRoutes = () => {
     <Layout title={title} privateRoute>
       <FlexBox
         flex="1"
+        paddingMobile="1rem 0"
         align="center"
         justify="center"
+        alignMobile="flex-start"
         bgImage="/assets/dashboard/background.svg"
       >
         <FlexBox
           flex="0.8667"
           radius="2rem"
           maxWidth="75rem"
+          flexMobile="unset"
           radiusMobile="1rem"
+          widthMobile="86.67%"
           bgColor={PRIMARY_500}
           border={`2rem solid ${WHITE}`}
-          borderMobile={`1.5rem solid ${WHITE}`}
+          borderMobile={`1rem solid ${WHITE}`}
           height={`calc(100vh - ${navBarHeight}px - 2rem)`}
+          heightMobile={`calc(100vh - ${navBarHeight}px - 1.5rem)`}
         >
           <FlexBox
             flex="1"
@@ -96,15 +101,23 @@ const DashboardAllRoutes = () => {
             wrap="wrap"
             radius="1rem"
             maxWidth="75rem"
+            widthMobile="100%"
+            wrapMobile="nowrap"
             ref={dashboardRightRef}
+            directionMobile="column"
           >
             <DashboardLeft user={user} routerQuery={routerQuery} />
             <FlexBox
               flex="7"
               bgColor={WHITE}
               direction="column"
+              flexMobile="unset"
               position="relative"
+              heightMobile="100vh"
               padding="0 0 0 2rem"
+              overflowMobile="auto"
+              maxHeightMobile="100vh"
+              paddingMobile="1rem 0 0 0"
             >
               {routerQuery === "profile" ? (
                 <Profile user={user} />

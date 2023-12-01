@@ -66,6 +66,12 @@ export default class MyDocument extends Document {
           ></meta>
           <meta name="theme-color" content="#ffffff"></meta>
           <meta name="msapplication-config" content="/browserconfig.xml"></meta>
+          {/* <script
+            async
+            prefetch
+            type="text/javascript"
+            src="https://checkout.razorpay.com/v1/checkout.js"
+          /> */}
         </Head>
         <body>
           <Main />

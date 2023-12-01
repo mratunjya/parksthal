@@ -17,7 +17,7 @@ const EllipsisP = styled(P)`
 
 const ParkingHistory = ({ user, dashboardRightHeight }) => {
   const [parkingLots, setParkingLots] = useState(null);
-  const [pageLoading, setPageLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(false);
 
   const fetchBookings = useCallback(() => {
     setPageLoading(true);
@@ -46,7 +46,9 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
       gap="2rem"
       wrap="wrap"
       overflow="auto"
-      position="relative"
+      gapMobile="1rem"
+      heightMobile="100%"
+      justifyMobile="center"
       height={dashboardRightHeight + "px"}
     >
       {parkingLots?.map((parkingLot) => (
@@ -57,9 +59,11 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
           justify="center"
           maxWidth="350px"
           direction="column"
+          marginMobile="5px"
           margin="5px auto 0"
           height="fit-content"
           padding="1.5rem 2rem"
+          paddingMobile="1rem 1.5rem"
           key={randomstring.generate()}
           shadow={`0 0 4px 1px ${SECONDARY_100}`}
         >
