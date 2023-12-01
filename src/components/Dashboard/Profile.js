@@ -68,13 +68,25 @@ const Profile = ({ user }) => {
   };
 
   return (
-    <FlexBox gap="4rem" align="center" justify="center" direction="column">
+    <FlexBox
+      gap="4rem"
+      align="center"
+      justify="center"
+      gapMobile="2rem"
+      direction="column"
+    >
       <H1>Profile Details</H1>
       <form onSubmit={handleSubmit(submitHandler)}>
         <FlexBox gap="2rem" wrap="wrap" justify="center">
           <FlexBox direction="column" gap="1rem">
             <label>
-              <FlexBox justify="center" align="center" gap="1rem">
+              <FlexBox
+                gap="1rem"
+                align="center"
+                justify="center"
+                wrapMobile="wrap"
+                justifyMobile="flex-start"
+              >
                 <H3>Name</H3>
                 <FlexBox justify="center" align="center" gap="0.75rem">
                   <input
@@ -87,7 +99,13 @@ const Profile = ({ user }) => {
               </FlexBox>
             </label>
             <label>
-              <FlexBox justify="center" align="center" gap="1rem">
+              <FlexBox
+                gap="1rem"
+                align="center"
+                justify="center"
+                wrapMobile="wrap"
+                justifyMobile="flex-start"
+              >
                 <H3>Email</H3>
                 <FlexBox justify="center" align="center" gap="0.75rem">
                   <input
@@ -100,7 +118,13 @@ const Profile = ({ user }) => {
               </FlexBox>
             </label>
             <label>
-              <FlexBox align="center" justify="space-between" gap="1rem">
+              <FlexBox
+                gap="1rem"
+                align="center"
+                wrapMobile="wrap"
+                justify="space-between"
+                justifyMobile="flex-start"
+              >
                 <H3>Role</H3>
                 <FlexBox justify="center" align="center" gap="0.75rem">
                   <input
@@ -115,13 +139,20 @@ const Profile = ({ user }) => {
           </FlexBox>
           <FlexBox direction="column" gap="1rem">
             <label>
-              <FlexBox align="center" gap="1rem" wrap="wrap" gapMobile="0.5rem">
+              <FlexBox
+                gap="1rem"
+                wrap="wrap"
+                align="center"
+                wrapMobile="wrap"
+                gapMobile="0.5rem"
+                justifyMobile="flex-start"
+              >
                 <H3>Phone</H3>
                 <FlexBox
-                  justify="center"
-                  align="center"
                   gap="0.75rem"
                   gapMobile="0"
+                  align="center"
+                  justify="center"
                 >
                   <H4 className="no-mobile">+91</H4>
                   <input
