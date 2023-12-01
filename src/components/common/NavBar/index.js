@@ -83,7 +83,7 @@ const CommonNavBar = () => {
               justify="center"
               padding="0.5rem"
               bgColor="transparent"
-              border="2px solid transparent"
+              border="0.125rem solid transparent"
             >
               <H5 whiteSpace="nowrap" color={SECONDARY_400}>
                 {navLink.name}
@@ -122,7 +122,7 @@ const CommonNavBar = () => {
             setIsLogOutClick(true);
           }}
           disabled={isLogOutClick}
-          border={`1px solid ${PRIMARY_500}`}
+          border={`0.0625rem solid ${PRIMARY_500}`}
           bgColor={isLogOutClick ? PRIMARY_500 : WHITE}
           padding={!isLogOutClick ? "0 1rem 0 0 !important" : "auto"}
         >

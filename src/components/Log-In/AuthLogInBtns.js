@@ -66,7 +66,7 @@ const AuthLogInBtns = () => {
       ...styles,
       cursor: "pointer",
       boxShadow: PRIMARY_500,
-      border: `2px solid ${SECONDARY_500}`,
+      border: `0.125rem solid ${SECONDARY_500}`,
       ":hover": {
         ...styles[":hover"],
         borderColor: PRIMARY_500,
@@ -77,8 +77,8 @@ const AuthLogInBtns = () => {
       position: "unset",
       overflow: "hidden",
       borderColor: "red",
-      borderRadius: "10px",
-      boxShadow: `0 0 8px 1px ${TERTIARY_500}`,
+      borderRadius: "0.625rem",
+      boxShadow: `0 0 0.5rem 0.0625rem ${TERTIARY_500}`,
     }),
     option: (styles, { isSelected }) => ({
       ...styles,

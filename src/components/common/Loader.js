@@ -45,10 +45,10 @@ const DotPulseRight = styled(DotPulse)`
 
 export const Loader = ({ color, flex }) => (
   <FlexBox
-    gap="10px"
     flex={flex}
     width="100%"
     height="100%"
+    gap="0.625rem"
     align="center"
     justify="center"
   >

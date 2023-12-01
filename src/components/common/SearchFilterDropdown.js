@@ -51,10 +51,10 @@ const SearchFilterDropdown = ({ data, selectedItem, setSelectedItem }) => {
           width="100%"
           radius="1rem"
           overflow="auto"
-          maxHeight="200px"
+          maxHeight="12.5rem"
           direction="column"
           height="fit-content"
-          shadow={`0 0 4px 1px ${SECONDARY_100}`}
+          shadow={`0 0 0.25rem 0.0625rem ${SECONDARY_100}`}
         >
           {filteredItems?.map((item) => (
             <FlexBox

@@ -44,7 +44,7 @@ export default function Layout({ title, description, children, privateRoute }) {
           }
         />
       </Head>
-      <ProgressBar bgcolor={SECONDARY_500} height="3px" />
+      <ProgressBar bgcolor={SECONDARY_500} height="0.1875rem" />
       <StyleSheetManager shouldForwardProp={(prop) => isPropValid(prop)}>
         <NavBar />
         {privateRoute ? (

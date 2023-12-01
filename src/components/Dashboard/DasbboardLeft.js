@@ -46,7 +46,7 @@ const DashboardLeft = ({ user, routerQuery }) => {
               bgColor={PRIMARY_500}
               textColor={TERTIARY_500}
               paddingMobile="0.75rem 1rem"
-              border={`2px solid ${PRIMARY_500}`}
+              border={`0.125rem solid ${PRIMARY_500}`}
             >
               <H3>{option}</H3>
             </FlexBox>
@@ -64,7 +64,7 @@ const DashboardLeft = ({ user, routerQuery }) => {
           bgColor={SECONDARY_500}
           textColor={TERTIARY_500}
           paddingMobile="0.75rem 1rem"
-          border={`2px solid ${SECONDARY_500}`}
+          border={`0.125rem solid ${SECONDARY_500}`}
         >
           <H3>Edit Profile</H3>
         </FlexBox>

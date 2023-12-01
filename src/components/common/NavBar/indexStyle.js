@@ -42,11 +42,11 @@ export const WhatsappWrapper = styled(FlexBox)`
 export const NavCta = styled(FlexBox)`
   &:hover,
   &:focus {
-    border: 2px solid ${SECONDARY_400};
+    border: 0.125rem solid ${SECONDARY_400};
   }
 
   &:active {
-    border: 2px solid ${SECONDARY_400};
+    border: 0.125rem solid ${SECONDARY_400};
     background-color: ${SECONDARY_400};
 
     ${H5} {

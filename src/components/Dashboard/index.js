@@ -97,9 +97,9 @@ const DashboardAllRoutes = () => {
         >
           <FlexBox
             flex="1"
-            gap="2px"
             wrap="wrap"
             radius="1rem"
+            gap="0.125rem"
             maxWidth="75rem"
             widthMobile="100%"
             wrapMobile="nowrap"

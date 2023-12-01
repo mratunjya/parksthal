@@ -128,9 +128,9 @@ const AddParkingLotModal = ({
       position="fixed"
       left={modalLeft + "px"}
       width={modalWidth + "px"}
-      shadow={`0 0 4px 1px ${SECONDARY_100}`}
       height={dashboardRightHeight + "px"}
       minHeight={dashboardRightHeight + "px"}
+      shadow={`0 0 0.25rem 0.0625rem ${SECONDARY_100}`}
     >
       <CloseButton
         onClick={() => {
@@ -181,7 +181,7 @@ const AddParkingLotModal = ({
                 <FlexBox
                   radius="1rem"
                   padding="1rem 2rem"
-                  border={`1px solid ${PRIMARY_500}`}
+                  border={`0.0625rem solid ${PRIMARY_500}`}
                 >
                   <H3>{country}</H3>
                 </FlexBox>

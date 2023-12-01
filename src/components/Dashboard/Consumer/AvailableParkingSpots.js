@@ -89,15 +89,15 @@ const AvailableParkingSpots = ({ user, dashboardRightHeight }) => {
           width="100%"
           radius="1rem"
           justify="center"
-          maxWidth="350px"
           direction="column"
-          marginMobile="5px"
-          margin="5px auto 0"
           height="fit-content"
+          maxWidth="21.875rem"
           padding="1.5rem 2rem"
+          marginMobile="0.3125rem"
+          margin="0.3125rem auto 0"
           paddingMobile="1rem 1.5rem"
           key={randomstring.generate()}
-          shadow={`0 0 4px 1px ${SECONDARY_100}`}
+          shadow={`0 0 0.25rem 0.0625rem ${SECONDARY_100}`}
         >
           <FlexBox gap="1rem">
             <H4>Name:</H4>

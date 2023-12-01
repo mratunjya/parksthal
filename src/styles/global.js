@@ -39,17 +39,17 @@ const GlobalStyles = createGlobalStyle`
 
   input {
     color: ${SECONDARY_500};
-    border-bottom: 2px solid ${PRIMARY_500};
+    border-bottom: 0.125rem solid ${PRIMARY_500};
   }
 
   input:disabled {
-    border: 2px solid;
+    border: 0.125rem solid;
     border-color: ${TERTIARY_900};
     background-color: ${TERTIARY_300};
   }
 
   input:focus {
-    border: 2px solid ${PRIMARY_500};
+    border: 0.125rem solid ${PRIMARY_500};
   }
 
   input::placeholder {

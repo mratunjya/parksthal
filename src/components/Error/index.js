@@ -17,7 +17,7 @@ const Error = () => {
           align="center"
           padding="4rem"
           direction="column"
-          shadow={`0 0 4px 1px ${SECONDARY_100}`}
+          shadow={`0 0 0.25rem 0.0625rem ${SECONDARY_100}`}
         >
           <FlexBox direction="column" align="center">
             <CommonImage
