@@ -131,31 +131,35 @@ const AvailableParkingSpots = ({ user, dashboardRightHeight }) => {
               </FlexBox>
             </>
           )}
-          <FlexBox justify="flex-end">
-            {parkingLot?.booked_today ? (
-              <FlexBox
-                radius="0.25rem"
-                padding="0.5rem"
-                textColor={WHITE}
-                bgColor={WHATSAPP_GREEN}
-              >
-                Booking Confirm
-              </FlexBox>
-            ) : (
-              <FlexBox
-                cursor="pointer"
-                radius="0.25rem"
-                padding="0.5rem"
-                textColor={WHITE}
-                bgColor={FACEBOOK_BLUE}
-                onClick={() => {
-                  handleBooking({ parkingLot, user });
-                }}
-              >
-                Book
-              </FlexBox>
-            )}
-          </FlexBox>
+          {!(
+            parseInt(parkingLot.total_capacity) === parseInt(parkingLot?.booked)
+          ) && (
+            <FlexBox justify="flex-end">
+              {parkingLot?.booked_today ? (
+                <FlexBox
+                  radius="0.25rem"
+                  padding="0.5rem"
+                  textColor={WHITE}
+                  bgColor={WHATSAPP_GREEN}
+                >
+                  Booking Confirm
+                </FlexBox>
+              ) : (
+                <FlexBox
+                  cursor="pointer"
+                  radius="0.25rem"
+                  padding="0.5rem"
+                  textColor={WHITE}
+                  bgColor={FACEBOOK_BLUE}
+                  onClick={() => {
+                    handleBooking({ parkingLot, user });
+                  }}
+                >
+                  Book
+                </FlexBox>
+              )}
+            </FlexBox>
+          )}
         </FlexBox>
       ))}
     </FlexBox>
