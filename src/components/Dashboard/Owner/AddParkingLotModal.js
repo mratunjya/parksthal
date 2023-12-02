@@ -129,8 +129,8 @@ const AddParkingLotModal = ({
       left={modalLeft + "px"}
       width={modalWidth + "px"}
       height={dashboardRightHeight + "px"}
-      minHeight={dashboardRightHeight + "px"}
       shadow={`0 0 0.25rem 0.0625rem ${SECONDARY_100}`}
+      maxHeightMobile={`calc(${dashboardRightHeight}px - 6.25rem)`}
     >
       <CloseButton
         onClick={() => {
