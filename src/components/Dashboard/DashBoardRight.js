@@ -2,6 +2,7 @@ import IndexRight from "./IndexRight";
 import ParkingHistory from "./Consumer/ParkingHistory";
 import ManageParkingLot from "./Owner/ManageParkingLot";
 import AvailableParkingSpots from "./Consumer/AvailableParkingSpots";
+import UnderDevelopment from "./UnderDevelopment";
 
 const DashboardRight = ({
   user,
@@ -30,7 +31,16 @@ const DashboardRight = ({
     return (
       <ParkingHistory user={user} dashboardRightHeight={dashboardRightHeight} />
     );
+  } else if (
+    routerQuery === "monitor-parking-lots" ||
+    routerQuery === "view-parking-history" ||
+    routerQuery === "manage-attendants" ||
+    routerQuery === "generate-report"
+  ) {
+    setTitle("ParkSthal: Under Development");
+    return <UnderDevelopment />;
   }
+
   return <IndexRight />;
 };
 
