@@ -10,7 +10,13 @@ import { FlexBox } from "@common/FlexBox";
 import PageLoader from "@common/PageLoader";
 import { GET_ALL_PARKING_LOTS } from "@apis";
 import { DisplayRazorpay } from "@common/DisplayRazorpay";
-import { FACEBOOK_BLUE, SECONDARY_100, WHATSAPP_GREEN, WHITE } from "@colors";
+import {
+  WHITE,
+  PRIMARY_500,
+  FACEBOOK_BLUE,
+  SECONDARY_100,
+  WHATSAPP_GREEN,
+} from "@colors";
 
 const EllipsisP = styled(P)`
   overflow: hidden;
@@ -131,35 +137,41 @@ const AvailableParkingSpots = ({ user, dashboardRightHeight }) => {
               </FlexBox>
             </>
           )}
-          {!(
-            parseInt(parkingLot.total_capacity) === parseInt(parkingLot?.booked)
-          ) && (
-            <FlexBox justify="flex-end">
-              {parkingLot?.booked_today ? (
-                <FlexBox
-                  radius="0.25rem"
-                  padding="0.5rem"
-                  textColor={WHITE}
-                  bgColor={WHATSAPP_GREEN}
-                >
-                  Booking Confirm
-                </FlexBox>
-              ) : (
-                <FlexBox
-                  cursor="pointer"
-                  radius="0.25rem"
-                  padding="0.5rem"
-                  textColor={WHITE}
-                  bgColor={FACEBOOK_BLUE}
-                  onClick={() => {
-                    handleBooking({ parkingLot, user });
-                  }}
-                >
-                  Book
-                </FlexBox>
-              )}
-            </FlexBox>
-          )}
+          <FlexBox justify="flex-end">
+            {parseInt(parkingLot.booked) >=
+            parseInt(parkingLot?.total_capacity) ? (
+              <FlexBox
+                radius="0.25rem"
+                padding="0.5rem"
+                textColor={WHITE}
+                bgColor={PRIMARY_500}
+              >
+                Booking Full
+              </FlexBox>
+            ) : parkingLot?.booked_today ? (
+              <FlexBox
+                radius="0.25rem"
+                padding="0.5rem"
+                textColor={WHITE}
+                bgColor={WHATSAPP_GREEN}
+              >
+                Booking Confirm
+              </FlexBox>
+            ) : (
+              <FlexBox
+                cursor="pointer"
+                radius="0.25rem"
+                padding="0.5rem"
+                textColor={WHITE}
+                bgColor={FACEBOOK_BLUE}
+                onClick={() => {
+                  handleBooking({ parkingLot, user });
+                }}
+              >
+                Book
+              </FlexBox>
+            )}
+          </FlexBox>
         </FlexBox>
       ))}
     </FlexBox>

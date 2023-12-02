@@ -48,9 +48,9 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
 
     const formattedHours = hours % 12 || 12;
 
-    return `${formattedHours}:${addLeadingZero(minutes)}:${addLeadingZero(
-      seconds
-    )} ${ampm}`;
+    return `${addLeadingZero(formattedHours)}:${addLeadingZero(
+      minutes
+    )}:${addLeadingZero(seconds)} ${ampm}`;
   }
 
   function addLeadingZero(value) {
