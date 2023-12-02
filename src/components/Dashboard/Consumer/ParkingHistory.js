@@ -39,6 +39,24 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
     fetchBookings(); // Initial fetch
   }, [fetchBookings, user]);
 
+  function format12HourTime(dateTime) {
+    const date = new Date(dateTime);
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    const formattedHours = hours % 12 || 12;
+
+    return `${formattedHours}:${addLeadingZero(minutes)}:${addLeadingZero(
+      seconds
+    )} ${ampm}`;
+  }
+
+  function addLeadingZero(value) {
+    return value < 10 ? `0${value}` : value;
+  }
+
   return pageLoading ? (
     <PageLoader />
   ) : (
@@ -86,6 +104,18 @@ const ParkingHistory = ({ user, dashboardRightHeight }) => {
           <FlexBox gap="1rem">
             <H4>Price:</H4>
             <EllipsisP>{parkingLot.price}</EllipsisP>
+          </FlexBox>
+          <FlexBox gap="1rem">
+            <H4>Date:</H4>
+            <EllipsisP>
+              {new Date(parkingLot.created_at).getDate()}/
+              {new Date(parkingLot.created_at).getMonth() + 1}/
+              {new Date(parkingLot.created_at).getFullYear()}
+            </EllipsisP>
+          </FlexBox>
+          <FlexBox gap="1rem">
+            <H4>Time:</H4>
+            <EllipsisP>{format12HourTime(parkingLot.created_at)}</EllipsisP>
           </FlexBox>
         </FlexBox>
       ))}
